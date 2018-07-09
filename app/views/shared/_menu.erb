@@ -1,6 +1,6 @@
 <%= link_to "Home", "/" %>
 <%= link_to "Artists", artists_path %>
-<% if !@currentUser %>
+<% if !@current_user %>
   <%= link_to "Log in", "/login" %>
 <% else %>
 <%= link_to "Log out", "/logout" %>
