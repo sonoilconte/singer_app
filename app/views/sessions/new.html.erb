@@ -1,5 +1,9 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<%= link_to "Home", "/" %>
+<%= link_to "Artists", artists_path %>
+<%= link_to "Log in", "/login" %>
+
+
+<h1>Log in</h1>
 
 <%= form_for @user, url: '/login', method: 'post' do |f| %>
 

@@ -4,11 +4,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    p params
+    p 'params', params
     user = User.find_by_email(params[:user][:email])
     if user && user.authenticate(params[:user][:password])
       session[:user_id] = user.id
-      p session[:user_id]
+      p 'session[:user_id]', session[:user_id]
       redirect_to '/'
     else
       redirect_to '/login'
@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    p 'session[:user_id]', session[:user_id]
     redirect_to '/'
   end
 

@@ -1,10 +1,15 @@
-<h1>yo</h1>
-<img src="http://i.giphy.com/SPZFhfUJjsJO0.gif" alt="learning internet" style="width: 300px">
-<p>Random num <%= @random %></p>
+<%= link_to "Home", "/" %>
+<%= link_to "Artists", artists_path %>
+<%= link_to "Log in", "/login" %>
+<%= link_to "Log out", "/logout" %>
 
-<% @roles.each do |role| %>
-  <p><%= role %></p>
+
+<% if @currentUser %>
+<p> Welcome, <%= @currentUser[:name] %>! </p>
 <% end %>
 
-<%= link_to "Artists", artists_path %>
-<%= link_to "Home", "/" %>
+<h1>Artists Site</h1>
+
+<p>
+  <%= @greeting %>
+</p>

@@ -1,3 +1,7 @@
+<%= link_to "Home", "/" %>
+<%= link_to "Artists", artists_path %>
+<%= link_to "Log in", "/login" %>
+
 <h1>Artists</h1>
 
 <% @artists.each do |artist| %>
@@ -5,6 +9,3 @@
   <p><%= artist.voice_type %></p>
   <p><%= artist.email %></p>
 <% end %>
-
-<%= link_to "Artists", artists_path %>
-<%= link_to "Home", "/" %>
