@@ -1,12 +1,5 @@
-<%= link_to "Home", "/" %>
-<%= link_to "Artists", artists_path %>
-<%= link_to "Log in", "/login" %>
-<%= link_to "Log out", "/logout" %>
-
-
-<% if @currentUser %>
-<p> Welcome, <%= @currentUser[:name] %>! </p>
-<% end %>
+<%= render "shared/menu" %>
+<%= render "shared/current_user" %>
 
 <h1>Artists Site</h1>
 
