@@ -1,7 +1,10 @@
 <%= link_to "Home", "/" %>
-<%= link_to "Artists", artists_path %>
-<% if !@current_user %>
-  <%= link_to "Log in", "/login" %>
-<% else %>
-<%= link_to "Log out", "/logout" %>
+<%= link_to "Bio", '/bio' %>
+<%= link_to "Resume", '/resume' %>
+<%= link_to "Listen", '/listen' %>
+<%= link_to "Contact", '/contact' %>
+
+<% if @current_user %>
+  <% p @current_user %>
+  <%= link_to "Admin", "/admin" %>
 <% end %>

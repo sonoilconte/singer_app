@@ -1,0 +1,24 @@
+<%= render "shared/menu" %>
+
+<% if @artist %>
+<h1> Resume <br>
+  <% if @artist.name %>
+  <%= @artist.name %>
+  <% else %>
+  <%= p 'Artist name not found' %>
+  <% end %>
+</h1>
+
+<p>
+  <% if @artist.bio %>
+  <%= @artist.bio %>
+  <% else %>
+  <%= p 'Artist bio not found' %>
+  <% end %>
+</p>
+
+<% else %>
+<h1>
+  <%= p 'Artist not found'%>
+</h1>
+<% end %>
