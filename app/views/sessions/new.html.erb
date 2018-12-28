@@ -5,9 +5,11 @@
 <%= form_for @user, url: '/login', method: 'post' do |f| %>
 
   <p>
+    Email
     <%= f.email_field :email %>
   </p>
   <p>
+    Password
     <%= f.password_field :password %>
   </p>
   <p>
