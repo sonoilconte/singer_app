@@ -9,6 +9,10 @@ class ArtistsController < ApplicationController
     @artist = Artist.find_by(id: artist_id)
   end
 
+  def show_default
+    @artist = Artist.find_by(id: 2)
+  end
+
   # will make this DRYer
   def schedule
     artist_id = params[:id]
