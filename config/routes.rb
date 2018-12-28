@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/' => 'welcome#index'
   get '/artists' => 'artists#index', as: 'artists'
   get '/artists/:id' => 'artists#show'
+  get 'artists/:id/schedule' => 'artists#schedule'
 
   # Sessions
   get '/login' => 'sessions#new'
