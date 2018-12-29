@@ -1,5 +1,10 @@
 class ArtistsController < ApplicationController
 
+  def new
+    current_user
+    p 'new controller'
+  end
+
   def index
     current_user
     @artists = Artist.all
@@ -9,6 +14,12 @@ class ArtistsController < ApplicationController
     current_user
     artist_id = params[:id]
     @artist = Artist.find_by(id: artist_id)
+  end
+
+  def create
+    current_user
+    artist = Artist.create!(artist_params)
+    redirect_to '/artists'
   end
 
   def show_default
@@ -50,6 +61,10 @@ class ArtistsController < ApplicationController
 
   def default_artist
     @artist = Artist.find_by(id: 2)
+  end
+
+  def artist_params
+    params.require(:artist).permit(:name, :voice_type, :bio, :email, :management, images: [])
   end
 
 end

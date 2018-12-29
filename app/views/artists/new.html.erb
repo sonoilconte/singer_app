@@ -1,0 +1,24 @@
+<%= render "shared/menu" %>
+<%= render "shared/current_user" %>
+
+<h1>Add a New Artist</h1>
+
+<%= form_with scope: :artist, local: true do |form| %>
+
+<p>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+</p>
+<p>
+
+<p>
+  <%= form.label :images %>
+</p>
+<p>
+  <%= form.file_field :images, multiple: true %>
+</p>
+<p>
+  <%= form.submit %>
+</p>
+
+<% end %>

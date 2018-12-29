@@ -17,6 +17,12 @@
   <% end %>
 </p>
 
+<p>
+  <% (0...@artist.images.count).each do |image|  %>
+    <%= image_tag(@artist.images[image]) %>
+  <% end %>
+</p>
+
 <% else %>
 <h1>
   <%= p 'Artist not found'%>
