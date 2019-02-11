@@ -1,0 +1,58 @@
+<%= render "shared/menu" %>
+<%= render "shared/current_user" %>
+
+<h1>Edit Artist</h1>
+
+<%= form_with scope: :artist, local: true, url: "/artists/#{@artist.id}", :html=> {:method=>:put} do |form| %>
+
+<p>
+  <%= form.label :id %>
+  <%= form.text_field :id %>
+</p>
+<p>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+</p>
+<p>
+
+<p>
+  <%= form.label :images %>
+</p>
+<p>
+  <%= form.file_field :images, multiple: true %>
+</p>
+<p>
+  <%= form.submit %>
+</p>
+
+<% if @artist %>
+<h1>
+  <% if @artist.name %>
+  <%= @artist.name %>
+  <% else %>
+  <%= p 'Artist name not found' %>
+  <% end %>
+</h1>
+
+<p>
+  <% if @artist.bio %>
+  <%= @artist.bio %>
+  <% else %>
+  <%= p 'Artist bio not found' %>
+  <% end %>
+</p>
+
+<p>
+  <% (0...@artist.images.count).each do |image|  %>
+    <%= image_tag(@artist.images[image]) %>
+  <% end %>
+</p>
+
+<% else %>
+<h1>
+  <%= p 'Artist not found'%>
+</h1>
+<% end %>
+
+
+<% end %>

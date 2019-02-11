@@ -22,6 +22,22 @@ class ArtistsController < ApplicationController
     redirect_to '/artists'
   end
 
+  def edit
+    current_user
+    artist_id = params[:id]
+    @artist = Artist.find_by(id: artist_id)
+  end
+
+  def update
+    current_user
+    artist_id = params[:id]
+    p artist_id
+    artist = Artist.find_by(id: artist_id)
+    p artist
+    artist.update_attributes(artist_params)
+    redirect_to "/artists/#{params[:id]}"
+  end
+
   def show_default
     current_user
     default_artist

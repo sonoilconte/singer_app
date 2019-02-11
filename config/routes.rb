@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/artists/:id' => 'artists#show'
   get '/artists/:id/schedule' => 'artists#schedule'
   post '/artists/new' => 'artists#create'
+  get '/artists/:id/edit' => 'artists#edit'
+  put '/artists/:id' => 'artists#update'
 
   # Welcome
   get '/welcome' => 'welcome#index'
