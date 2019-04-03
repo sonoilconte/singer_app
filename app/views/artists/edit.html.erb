@@ -54,5 +54,9 @@
 </h1>
 <% end %>
 
-
 <% end %>
+
+<p>
+  <!-- <%= button_to 'Delete Artist', { action: 'delete', id: @artist.id }, method: :delete %> -->
+  <%= button_to 'Delete Artist', artists_delete_path(@artist), method: :delete %>
+</p>

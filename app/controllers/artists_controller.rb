@@ -38,6 +38,13 @@ class ArtistsController < ApplicationController
     redirect_to "/artists/#{params[:id]}"
   end
 
+  def delete
+    current_user
+    artist_id = params[:id]
+    Artist.delete(artist_id)
+    redirect_to '/artists'
+  end
+
   def show_default
     current_user
     default_artist
