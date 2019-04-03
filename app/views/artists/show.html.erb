@@ -23,6 +23,10 @@
   <% end %>
 </p>
 
+<p>
+  <%= link_to 'Edit Artist', artists_edit_path(@artist) %>
+</p>
+
 <% else %>
 <h1>
   <%= p 'Artist not found'%>
