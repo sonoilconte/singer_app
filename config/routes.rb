@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/artists/:id/edit' => 'artists#edit', as: 'artists_edit'
   put '/artists/:id' => 'artists#update'
   delete '/artists/:id' => 'artists#delete', as: 'artists_delete'
+  delete 'artists/:id/attachments/:image_id' => 'artists#delete_image'
 
   # Welcome
   get '/welcome' => 'welcome#index'

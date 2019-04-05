@@ -8,9 +8,10 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:user][:email])
     if user && user.authenticate(params[:user][:password])
       session[:user_id] = user.id
-      p 'session[:user_id]', session[:user_id]
+      p 'access permitted, session[:user_id]', session[:user_id]
       redirect_to '/'
     else
+      p 'access denied'
       redirect_to '/login'
     end
   end

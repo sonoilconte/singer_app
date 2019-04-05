@@ -43,8 +43,14 @@
 </p>
 
 <p>
-  <% (0...@artist.images.count).each do |image|  %>
-    <%= image_tag(@artist.images[image]) %>
+  <% (0...@artist.images.count).each do |index|  %>
+    <%= image_tag(@artist.images[index]) %>
+    <%=
+      link_to 'Delete Image',
+      "attachments/#{@artist.images[index].id}",
+      data: { confirm: "Are you sure you want to delete #{@artist.images[index].filename.to_s}"},
+      method: :delete
+    %>
   <% end %>
 </p>
 
@@ -57,6 +63,9 @@
 <% end %>
 
 <p>
-  <!-- <%= button_to 'Delete Artist', { action: 'delete', id: @artist.id }, method: :delete %> -->
-  <%= button_to 'Delete Artist', artists_delete_path(@artist), method: :delete %>
+  <%=
+    button_to 'Delete Artist', artists_delete_path(@artist),
+    data: { confirm: "Are you sure you want to delete #{@artist.name}?" },
+    method: :delete
+  %>
 </p>

@@ -45,6 +45,13 @@ class ArtistsController < ApplicationController
     redirect_to '/artists'
   end
 
+  def delete_image
+    # purge image attachment using the attachment id of the attached image
+    artist = Artist.find_by(id: params[:id])
+    artist.images.find(params[:image_id]).purge
+    redirect_to "/artists/#{params[:id]}/edit"
+  end
+
   def show_default
     current_user
     default_artist
