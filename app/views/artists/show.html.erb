@@ -10,11 +10,21 @@
 </h1>
 
 <p>
+  Biography
+</p>
+<p>
   <% if @artist.bio %>
   <%= @artist.bio %>
   <% else %>
   <%= p 'Artist bio not found' %>
   <% end %>
+</p>
+
+<p>
+  Schedule
+</p>
+<p>
+  <%= @artist.schedule %>
 </p>
 
 <p>
