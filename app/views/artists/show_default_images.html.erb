@@ -1,0 +1,14 @@
+<%= render 'shared/menu' %>
+
+<% if @artist %>
+<h1>Gallery</h1>
+
+  <% @artist.images.each do |image| %>
+    <%= image_tag(image) %>
+  <% end %>
+
+<% else %>
+<h1>
+  <%= p 'Artist not found' %>
+</h1>
+<% end %>

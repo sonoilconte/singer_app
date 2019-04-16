@@ -1,5 +1,5 @@
-<%= render "shared/menu" %>
-<%= render "shared/current_user" %>
+<%= render 'shared/menu' %>
+<%= render 'shared/current_user' %>
 
 <h1>Edit Artist</h1>
 
@@ -43,15 +43,17 @@
 </p>
 
 <p>
-  <% (0...@artist.images.count).each do |index|  %>
-    <%= image_tag(@artist.images[index]) %>
+
+  <% @artist.images.each do |image| %>
+    <%= image_tag(image) %>
     <%=
       link_to 'Delete Image',
-      "attachments/#{@artist.images[index].id}",
-      data: { confirm: "Are you sure you want to delete #{@artist.images[index].filename.to_s}"},
+      "attachments/#{image.id}",
+      data: { confirm: "Are you sure you want to delete #{image.filename.to_s}?"},
       method: :delete
     %>
   <% end %>
+
 </p>
 
 <% else %>

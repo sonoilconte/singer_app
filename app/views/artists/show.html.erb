@@ -1,4 +1,4 @@
-<%= render "shared/menu" %>
+<%= render 'shared/menu' %>
 
 <% if @artist %>
 <h1>
@@ -18,8 +18,8 @@
 </p>
 
 <p>
-  <% (0...@artist.images.count).each do |image|  %>
-    <%= image_tag(@artist.images[image]) %>
+  <% @artist.images.each do |image| %>
+    <%= image_tag(image) %>
   <% end %>
 </p>
 
