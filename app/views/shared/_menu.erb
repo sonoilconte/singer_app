@@ -1,10 +1,12 @@
-<%= link_to "Home", "/" %>
-<%= link_to "Bio", '/bio' %>
-<%= link_to "Resume", '/resume' %>
-<%= link_to "Listen", '/listen' %>
-<%= link_to "Contact", '/contact' %>
+<%= link_to 'Home', '/' %>
+<%= link_to 'Bio', '/bio' %>
+<%= link_to 'Resume', '/resume' %>
+<%= link_to 'Schedule', '/schedule' %>
+<%= link_to 'Listen', '/listen' %>
+<%= link_to 'Gallery', '/gallery' %>
+<%= link_to 'Contact', '/contact' %>
 
 <% if @current_user %>
   <% p @current_user %>
-  <%= link_to "Admin", "/admin" %>
+  <%= link_to 'Admin', '/admin' %>
 <% end %>

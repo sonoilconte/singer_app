@@ -52,12 +52,27 @@ class ArtistsController < ApplicationController
     redirect_to "/artists/#{params[:id]}/edit"
   end
 
+  # will make this DRYer
+  def schedule
+    current_user
+    artist_id = params[:id]
+    @artist = Artist.find_by(id: artist_id)
+    # This line simply demonstrating we can access any model
+    # Will access the events for a given artist here
+    p User.all
+  end
+
   def show_default
     current_user
     default_artist
   end
 
   def show_default_bio
+    current_user
+    default_artist
+  end
+
+  def show_default_schedule
     current_user
     default_artist
   end
@@ -72,19 +87,14 @@ class ArtistsController < ApplicationController
     default_artist
   end
 
-  def show_default_contact
+  def show_default_images
     current_user
     default_artist
   end
 
-  # will make this DRYer
-  def schedule
+  def show_default_contact
     current_user
-    artist_id = params[:id]
-    @artist = Artist.find_by(id: artist_id)
-    # This line simply demonstrating we can access any model
-    # Will access the events for a given artist here
-    p User.all
+    default_artist
   end
 
   private

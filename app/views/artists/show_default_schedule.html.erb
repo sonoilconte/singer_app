@@ -1,0 +1,10 @@
+<%= render 'shared/menu' %>
+
+<% if @artist %>
+<h1>Schedule</h1>
+
+<% else %>
+<h1>
+  <%= p 'Artist not found'%>
+</h1>
+<% end %>
