@@ -4,7 +4,9 @@
 <h1>Artists</h1>
 
 <% @artists.each do |artist| %>
+  <p><%= artist.id %></p>
   <p><%= link_to artist.name, controller: 'artists', action: 'show', id: artist.id %></p>
   <p><%= artist.voice_type %></p>
   <p><%= artist.email %></p>
+  <hr>
 <% end %>

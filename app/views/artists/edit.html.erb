@@ -3,71 +3,61 @@
 
 <h1>Edit Artist</h1>
 
-<%= form_with scope: :artist, local: true, url: "/artists/#{@artist.id}", :html=> {:method=>:put} do |form| %>
-
-<p>
-  <%= form.label :id %>
-  <%= form.text_field :id %>
-</p>
-<p>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-</p>
-<p>
-
-<p>
-  <%= form.label :images %>
-</p>
-<p>
-  <%= form.file_field :images, multiple: true %>
-</p>
-<p>
-  <%= form.submit %>
-</p>
-
 <% if @artist %>
-<h1>
-  <% if @artist.name %>
-  <%= @artist.name %>
-  <% else %>
-  <%= p 'Artist name not found' %>
-  <% end %>
-</h1>
 
-<p>
-  <% if @artist.bio %>
-  <%= @artist.bio %>
-  <% else %>
-  <%= p 'Artist bio not found' %>
-  <% end %>
-</p>
+  <%= form_with scope: :artist, local: true, url: "/artists/#{@artist.id}", :html=> {:method=>:put} do |form| %>
 
-<p>
+    <p>
+      <%= form.label :id %>
+      <%= form.text_field :id %>
+    </p>
+    <p>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </p>
+    <p>
+      <%= form.label 'Add Images' %>
+      <%= form.file_field :images, multiple: true %>
+    </p>
+    <p>
+      <%= form.label :bio %>
+    </p>
+    <p>
+      <%= form.text_area :bio, cols: 50, rows: 10 %>
+    </p>
+    <p>
+      <%= form.label :schedule %>
+    </p>
+    <p>
+      <%= form.text_area :schedule, cols: 50, rows: 10 %>
+    </p>
+    <p>
+      <%= form.submit 'Save' %>
+    </p>
+  <!-- End of form -->
+  <% end %>
 
   <% @artist.images.each do |image| %>
+  <p>
     <%= image_tag(image) %>
     <%=
       link_to 'Delete Image',
       "attachments/#{image.id}",
-      data: { confirm: "Are you sure you want to delete #{image.filename.to_s}?"},
+      data: { confirm: "Are you sure you want to delete #{image.filename.to_s}?" },
       method: :delete
     %>
+  </p>
   <% end %>
 
-</p>
-
+  <p>
+    <%=
+      button_to 'Delete Artist', artists_delete_path(@artist),
+      data: { confirm: "Are you sure you want to delete #{@artist.name}?" },
+      method: :delete
+    %>
+  </p>
 <% else %>
-<h1>
-  <%= p 'Artist not found'%>
-</h1>
+  <p>
+    Artist not found
+  </p>
 <% end %>
-
-<% end %>
-
-<p>
-  <%=
-    button_to 'Delete Artist', artists_delete_path(@artist),
-    data: { confirm: "Are you sure you want to delete #{@artist.name}?" },
-    method: :delete
-  %>
-</p>

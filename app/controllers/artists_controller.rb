@@ -24,8 +24,7 @@ class ArtistsController < ApplicationController
 
   def edit
     current_user
-    artist_id = params[:id]
-    @artist = Artist.find_by(id: artist_id)
+    @artist = Artist.find_by(id: params[:id])
   end
 
   def update
@@ -104,7 +103,7 @@ class ArtistsController < ApplicationController
   end
 
   def artist_params
-    params.require(:artist).permit(:name, :voice_type, :bio, :email, :management, images: [])
+    params.require(:artist).permit(:name, :voice_type, :bio, :email, :schedule, :management, images: [])
   end
 
 end
