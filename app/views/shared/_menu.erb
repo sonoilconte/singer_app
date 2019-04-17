@@ -8,5 +8,5 @@
 
 <% if @current_user %>
   <% p @current_user %>
-  <%= link_to 'Admin Portal', "/artists/2/edit" %>
+  <%= link_to 'Admin Portal', "/artists/#{ENV['PRIMARY_USER_ID']}/edit" %>
 <% end %>
