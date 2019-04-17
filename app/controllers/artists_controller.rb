@@ -1,50 +1,49 @@
 class ArtistsController < ApplicationController
 
   def new
-    current_user
+    active_user = current_user
+    redirect_to '/login' unless active_user && active_user.email == ENV['ADMIN_EMAIL']
     p 'new controller'
   end
 
   def index
-    current_user
+    active_user = current_user
+    redirect_to '/login' unless active_user && active_user.email == ENV['ADMIN_EMAIL']
     @artists = Artist.all
   end
 
   def show
-    current_user
-    artist_id = params[:id]
-    @artist = Artist.find_by(id: artist_id)
+    redirect_to '/login' unless current_user.email == ENV['ADMIN_EMAIL']
+    @artist = Artist.find_by(id: params[:id])
   end
 
   def create
-    current_user
+    redirect_to '/login' unless current_user.email == ENV['ADMIN_EMAIL']
     artist = Artist.create!(artist_params)
     redirect_to '/artists'
   end
 
   def edit
-    current_user
+    redirect_to '/login' unless current_user
     @artist = Artist.find_by(id: params[:id])
   end
 
   def update
-    current_user
-    artist_id = params[:id]
-    p artist_id
-    artist = Artist.find_by(id: artist_id)
-    p artist
+    redirect_to '/login' unless current_user
+    artist = Artist.find_by(id: params[:id])
+    p "updating artist #{artist}"
     artist.update_attributes(artist_params)
     redirect_to "/artists/#{params[:id]}"
   end
 
   def delete
-    current_user
-    artist_id = params[:id]
-    Artist.delete(artist_id)
+    redirect_to '/login' unless current_user.email == ENV['ADMIN_EMAIL']
+    Artist.delete(params[:id])
     redirect_to '/artists'
   end
 
   def delete_image
+    redirect_to '/login' unless current_user
     # purge image attachment using the attachment id of the attached image
     artist = Artist.find_by(id: params[:id])
     artist.images.find(params[:image_id]).purge
