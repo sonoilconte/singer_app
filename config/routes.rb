@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get '/artists' => 'artists#index', as: 'artists'
   get '/artists/new' => 'artists#new'
   get '/artists/:id' => 'artists#show'
-  get '/artists/:id/schedule' => 'artists#schedule'
   post '/artists/new' => 'artists#create'
   get '/artists/:id/edit' => 'artists#edit', as: 'artists_edit'
   put '/artists/:id' => 'artists#update'
