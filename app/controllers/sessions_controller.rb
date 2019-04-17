@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:user][:password])
       session[:user_id] = user.id
       p 'access permitted, session[:user_id]', session[:user_id]
-      redirect_to "/artists/2/edit"
+      redirect_to "/artists/#{ENV['PRIMARY_USER_ID']}/edit"
     else
       p 'access denied'
       redirect_to '/login'

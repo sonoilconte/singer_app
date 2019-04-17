@@ -88,7 +88,7 @@ class ArtistsController < ApplicationController
   private
 
   def default_artist
-    @artist = Artist.find_by(id: 2)
+    @artist = Artist.find_by(email: ENV['PRIMARY_USER_EMAIL'])
   end
 
   def artist_params
