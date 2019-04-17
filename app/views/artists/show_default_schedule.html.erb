@@ -1,7 +1,11 @@
 <%= render 'shared/menu' %>
 
-<% if @artist %>
 <h1>Schedule</h1>
+
+<% if @artist %>
+<p>
+  <%= @artist.schedule %>
+</p>
 
 <% else %>
 <h1>

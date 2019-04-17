@@ -51,16 +51,6 @@ class ArtistsController < ApplicationController
     redirect_to "/artists/#{params[:id]}/edit"
   end
 
-  # will make this DRYer
-  def schedule
-    current_user
-    artist_id = params[:id]
-    @artist = Artist.find_by(id: artist_id)
-    # This line simply demonstrating we can access any model
-    # Will access the events for a given artist here
-    p User.all
-  end
-
   def show_default
     current_user
     default_artist
