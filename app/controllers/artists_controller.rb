@@ -24,16 +24,23 @@ class ArtistsController < ApplicationController
   end
 
   def edit
-    redirect_to '/login' unless current_user
+    active_user = current_user
+    redirect_to '/login' unless active_user && active_user.artists.exists?(params[:id])
     @artist = Artist.find_by(id: params[:id])
   end
 
   def update
     redirect_to '/login' unless current_user
+    if current_user.artists.exists?(params[:id])
+      puts "ALLOWED USER"
+    else
+      puts "NOT ALLOWED USER"
+    end
     artist = Artist.find_by(id: params[:id])
     p "updating artist #{artist}"
     artist.update_attributes(artist_params)
-    redirect_to "/artists/#{params[:id]}"
+    # redirect_to "/artists/#{params[:id]}"
+    redirect_to '/'
   end
 
   def delete
