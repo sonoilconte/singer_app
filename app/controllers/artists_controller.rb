@@ -1,59 +1,50 @@
 class ArtistsController < ApplicationController
 
   def new
-    active_user = current_user
-    redirect_to '/login' unless active_user && active_user.email == ENV['ADMIN_EMAIL']
-    p 'new controller'
+    redirect_non_admin(current_user)
   end
 
   def index
-    active_user = current_user
-    redirect_to '/login' unless active_user && active_user.email == ENV['ADMIN_EMAIL']
+    redirect_non_admin(current_user)
     @artists = Artist.all
   end
 
   def show
-    redirect_to '/login' unless current_user.email == ENV['ADMIN_EMAIL']
+    redirect_non_admin(current_user)
     @artist = Artist.find_by(id: params[:id])
   end
 
   def create
-    redirect_to '/login' unless current_user.email == ENV['ADMIN_EMAIL']
+    redirect_non_admin(current_user)
     artist = Artist.create!(artist_params)
     redirect_to '/artists'
   end
 
   def edit
-    active_user = current_user
-    redirect_to '/login' unless active_user && active_user.artists.exists?(params[:id])
+    redirect_unauthorized_user(current_user, params[:id])
     @artist = Artist.find_by(id: params[:id])
   end
 
   def update
-    redirect_to '/login' unless current_user
-    if current_user.artists.exists?(params[:id])
-      puts "ALLOWED USER"
-    else
-      puts "NOT ALLOWED USER"
-    end
+    redirect_unauthorized_user(current_user, params[:id])
     artist = Artist.find_by(id: params[:id])
-    p "updating artist #{artist}"
     artist.update_attributes(artist_params)
-    # redirect_to "/artists/#{params[:id]}"
-    redirect_to '/'
+    # Keep user on the edit artist page after a content update
+    redirect_to "/artists/#{params[:id]}/edit"
   end
 
   def delete
-    redirect_to '/login' unless current_user.email == ENV['ADMIN_EMAIL']
+    redirect_non_admin(current_user)
     Artist.delete(params[:id])
     redirect_to '/artists'
   end
 
   def delete_image
-    redirect_to '/login' unless current_user
+    redirect_unauthorized_user(current_user, params[:id])
     # purge image attachment using the attachment id of the attached image
     artist = Artist.find_by(id: params[:id])
     artist.images.find(params[:image_id]).purge
+    # Keep user on the edit artist page after deleting an image
     redirect_to "/artists/#{params[:id]}/edit"
   end
 
@@ -100,6 +91,27 @@ class ArtistsController < ApplicationController
 
   def artist_params
     params.require(:artist).permit(:name, :voice_type, :bio, :email, :schedule, :management, images: [])
+  end
+
+  def redirect_non_admin(user)
+    if !user
+      flash[:notice] = 'Access denied. Please log in.'
+      redirect_to '/login'
+    elsif user && user.email != ENV['ADMIN_EMAIL']
+      flash[:notice] = 'You do not have access to the requested page. You must log in with an admin account.'
+      redirect_to '/login'
+    end
+  end
+
+  def redirect_unauthorized_user(user, artist_id)
+    if !user
+      flash[:notice] = 'Access denied. Please log in.'
+      redirect_to '/login'
+    # User editing an artist must be associated with the artist in join table
+    elsif user && (!user.artists.exists?(artist_id) && (user.email != ENV['ADMIN_EMAIL']))
+      flash[:notice] = 'You do not have access to the requested artist\'s resources.'
+      redirect_to '/login'
+    end
   end
 
 end
