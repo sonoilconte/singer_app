@@ -3,6 +3,10 @@
 
 <h1>Edit Artist</h1>
 
+<% if flash[:notice] %>
+  <h2><%= flash[:notice] %></h2>
+<% end %>
+
 <% if @artist %>
 
   <%= form_with scope: :artist, local: true, url: "/artists/#{@artist.id}", :html=> {:method=>:put} do |form| %>
@@ -49,6 +53,7 @@
   </p>
   <% end %>
 
+  <% if @current_user.email == ENV['ADMIN_EMAIL'] %>
   <p>
     <%=
       button_to 'Delete Artist', artists_delete_path(@artist),
@@ -56,6 +61,7 @@
       method: :delete
     %>
   </p>
+  <% end %>
 <% else %>
   <p>
     Artist not found
