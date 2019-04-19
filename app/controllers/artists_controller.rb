@@ -28,7 +28,9 @@ class ArtistsController < ApplicationController
   def update
     redirect_unauthorized_user(current_user, params[:id])
     artist = Artist.find_by(id: params[:id])
-    artist.update_attributes(artist_params)
+    if artist.update_attributes(artist_params)
+      flash[:notice] = "Artist info saved"
+    end
     # Keep user on the edit artist page after a content update
     redirect_to "/artists/#{params[:id]}/edit"
   end
@@ -108,7 +110,7 @@ class ArtistsController < ApplicationController
       flash[:notice] = 'Access denied. Please log in.'
       redirect_to '/login'
     # User editing an artist must be associated with the artist in join table
-    elsif user && (!user.artists.exists?(artist_id) && (user.email != ENV['ADMIN_EMAIL']))
+    elsif user && !user.artists.exists?(artist_id) && (user.email != ENV['ADMIN_EMAIL'])
       flash[:notice] = 'You do not have access to the requested artist\'s resources.'
       redirect_to '/login'
     end
