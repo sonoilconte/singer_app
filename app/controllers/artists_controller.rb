@@ -92,7 +92,7 @@ class ArtistsController < ApplicationController
   end
 
   def artist_params
-    params.require(:artist).permit(:name, :voice_type, :bio, :email, :schedule, :management, images: [])
+    params.require(:artist).permit(:name, :voice_type, :bio, :biography, :email, :schedule, :management, images: [])
   end
 
   def redirect_non_admin(user)

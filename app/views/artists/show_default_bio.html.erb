@@ -17,6 +17,14 @@
   <% end %>
 </p>
 
+<p>
+  <% if @artist.biography %>
+  <%= @artist.biography %>
+  <% else %>
+  <%= p 'Artist bio not found' %>
+  <% end %>
+</p>
+
 <% else %>
 <h1>
   <%= p 'Artist not found'%>
