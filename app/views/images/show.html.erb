@@ -1,4 +1,5 @@
 <%= render 'shared/menu' %>
+<%= render 'shared/current_user' %>
 
 <% if @image %>
 <h1>
@@ -22,7 +23,7 @@
 </p>
 
 <p>
-  <% if @image.file.attached? %>
+  <% if @image.file.attachment %>
   <%= image_tag(@image.file) %>
   <% else %>
   <%= p 'Image file not found' %>
