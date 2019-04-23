@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   delete 'artists/:id/attachments/:image_id' => 'artists#delete_image'
 
   # Routes for administration of images associated with artist
-  get '/images/new' => 'images#new'
+  get '/artists/:id/images/new' => 'images#new'
+  post '/artists/:id/images/new' => 'images#create'
+  get '/artists/:id/images/:image_id' => 'images#show'
 
   # Welcome
   get '/welcome' => 'welcome#index'
