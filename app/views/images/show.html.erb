@@ -1,0 +1,40 @@
+<%= render 'shared/menu' %>
+
+<% if @image %>
+<h1>
+  <% if @image.name %>
+  <%= @image.name %>
+  <% else %>
+  <%= p 'image name not found' %>
+  <% end %>
+</h1>
+
+<h2>
+  Category
+</h2>
+
+<p>
+  <% if @image.category %>
+  <%= @image.category %>
+  <% else %>
+  <%= p 'image bio not found' %>
+  <% end %>
+</p>
+
+<p>
+  <% if @image.file.attached? %>
+  <%= image_tag(@image.file) %>
+  <% else %>
+  <%= p 'Image file not found' %>
+  <% end %>
+</p>
+
+<p>
+  <%= link_to 'Edit image' %>
+</p>
+
+<% else %>
+<h1>
+  <%= p 'image not found'%>
+</h1>
+<% end %>

@@ -6,6 +6,10 @@
 <%= form_with scope: :image, local: true do |form| %>
 
 <p>
+  <%= form.label :artist_id %>
+  <%= form.text_field :artist_id %>
+</p>
+<p>
   <%= form.label :name %>
   <%= form.text_field :name %>
 </p>
