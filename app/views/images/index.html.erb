@@ -1,0 +1,19 @@
+<%= render 'shared/menu' %>
+<%= render 'shared/current_user' %>
+
+<h1>Images</h1>
+
+<% @images.each do |image| %>
+<p>ID: <%= image.id %></p>
+<p>Name: <%= image.name %></p>
+<p>Category: <%= image.category %></p>
+<p>Order: <%= image.order %></p>
+<p>
+  <% if image.file.attachment %>
+  <%= image_tag(image.file) %>
+  <% else %>
+  <%= p 'No image file attachment found' %>
+  <% end %>
+</p>
+<hr>
+<% end %>
