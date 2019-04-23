@@ -11,35 +11,41 @@
 
   <%= form_with scope: :artist, local: true, url: "/artists/#{@artist.id}", :html=> {:method=>:put} do |form| %>
 
-    <p>
+    <h2>
       <%= form.label :id %>
+    </h2>
+    <p>
       <%= form.text_field :id %>
     </p>
-    <p>
+    <h2>
       <%= form.label :name %>
+    </h2>
+    <p>
       <%= form.text_field :name %>
     </p>
-    <p>
-      <%= form.label 'Add Images' %>
-      <%= form.file_field :images, multiple: true %>
-    </p>
-    <p>
-      <%= form.label :bio %>
-    </p>
-    <p>
-      <%= form.text_area :bio, cols: 50, rows: 10 %>
-    </p>
-    <p>
+    <h2>
       <%= form.label :biography %>
-    </p>
+    </h2>
     <p>
       <%= form.rich_text_area :biography %>
     </p>
-    <p>
+    <h2>
       <%= form.label :schedule %>
-    </p>
+    </h2>
     <p>
       <%= form.text_area :schedule, cols: 50, rows: 10 %>
+    </p>
+    <h2>
+      <%= form.label :management %>
+    </h2>
+    <p>
+     <%= form.rich_text_area :management %>
+    </p>
+    <h2>
+      <%= form.label 'Add Images' %>
+    </h2>
+    <p>
+      <%= form.file_field :images, multiple: true %>
     </p>
     <p>
       <%= form.submit 'Save' %>
