@@ -9,11 +9,12 @@
   <% end %>
 </h1>
 
+<h2>Management</h2>
 <p>
-  <% if @artist.bio %>
-  <%= @artist.bio %>
+  <% if @artist.management %>
+  <%= @artist.management %>
   <% else %>
-  <%= p 'Artist bio not found' %>
+  <%= p 'Artist management not found' %>
   <% end %>
 </p>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_22_203523) do
+ActiveRecord::Schema.define(version: 2019_04_22_234513) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2019_04_22_203523) do
     t.string "voice_type"
     t.string "bio"
     t.string "email"
-    t.string "management"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "schedule"
