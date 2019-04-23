@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   post '/artists/:id/images/new' => 'images#create'
   get '/artists/:id/images/:image_id' => 'images#show'
   get '/artists/:id/images' => 'images#index'
+  delete '/artists/:id/images/:image_id' => 'images#delete'
 
   # Welcome
   get '/welcome' => 'welcome#index'

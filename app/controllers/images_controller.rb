@@ -19,6 +19,11 @@ class ImagesController < ApplicationController
     redirect_to "/artists/#{params[:id]}/images/#{image.id}"
   end
 
+  def delete
+    Image.delete(params[:image_id])
+    redirect_to "/artists/#{params[:id]}/images/"
+  end
+
   private
 
   def image_params
