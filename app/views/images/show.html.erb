@@ -1,4 +1,4 @@
-<%= render 'shared/menu' %>
+<%= render 'shared/admin_menu' %>
 <%= render 'shared/current_user' %>
 
 <% if @image %>
@@ -31,7 +31,7 @@
 </p>
 
 <p>
-  <%= link_to 'Edit image' %>
+  <%= link_to 'Edit image', "/artists/#{@image.artist_id}/images/#{@image.id}/edit" %>
 </p>
 
 <% else %>
