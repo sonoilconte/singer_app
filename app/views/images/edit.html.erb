@@ -1,0 +1,56 @@
+<%= render 'shared/admin_menu' %>
+<%= render 'shared/current_user' %>
+
+<h1>Edit Image Attributes</h1>
+
+<% if flash[:notice] %>
+<h2><%= flash[:notice] %></h2>
+<% end %>
+
+<% if @image %>
+  <%=
+  form_with scope: :image,
+    local: true,
+    url: "/artists/#{@image.artist.id}/images/#{@image.id}",
+    :html => { :method => :put } do |form|
+  %>
+
+  <h2>
+    <%= form.label :id %>
+    <%= @image.id %>
+  </h2>
+  <h2>
+    <%= form.label :name %>
+  </h2>
+  <p>
+    <%= form.text_field :name %>
+  </p>
+  <h2>
+    <%= form.label :category %>
+  </h2>
+  <p>
+    <%= form.text_field :category %>
+  </p>
+  <h2>
+    <%= form.label :order %>
+  </h2>
+  <p>
+    <%= form.text_field :order %>
+  </p>
+  <h2>
+    <%= form.label :file %>
+  </h2>
+  <p>
+    <%= image_tag(@image.file) %>
+    <%= form.file_field :file, multiple: false %>
+  </p>
+  <p>
+    <%= form.submit 'Save Image' %>
+  </p>
+  <% end %>
+
+<% else %>
+<p>
+  <%= p 'No image found' %>
+</p>
+<% end %>

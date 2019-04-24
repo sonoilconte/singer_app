@@ -24,6 +24,12 @@
   end
   %>
 
+  <p>
+  <%=
+    link_to 'Edit image',
+    "/artists/#{image.artist_id}/images/#{image.id}/edit"
+  %>
+  </p>
   <%=
     link_to 'Delete Image',
     "/artists/#{image.artist_id}/images/#{image.id}",
