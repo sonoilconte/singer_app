@@ -41,8 +41,8 @@
     <%= form.label :file %>
   </h2>
   <p>
-    <%= image_tag(@image.file) %>
-    <%= form.file_field :file, multiple: false %>
+    <%= image_tag(@image.file, id: 'image_preview') %>
+    <%= form.file_field :file, multiple: false, :onchange => 'load_file(event)' %>
   </p>
   <p>
     <%= form.submit 'Save Image' %>
