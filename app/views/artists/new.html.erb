@@ -10,13 +10,11 @@
   <%= form.text_field :name %>
 </p>
 <p>
-  <%= form.label :images %>
+  <%= form.label :voice_type %>
+  <%= form.text_field :voice_type %>
 </p>
 <p>
-  <%= form.file_field :images, multiple: true %>
-</p>
-<p>
-  <%= form.submit %>
+  <%= form.submit 'Create new artist' %>
 </p>
 
 <% end %>
