@@ -1,7 +1,9 @@
-<%= link_to "Home", "/" %>
-<%= link_to "Artists", artists_path %>
 <% if !@current_user %>
   <%= link_to "Log in", "/login" %>
 <% else %>
+<%= link_to "Site", "/" %>
+<%= link_to "Edit Info", "/artists/#{ENV['PRIMARY_USER_ID']}/edit" %>
+<%= link_to "Edit Images", "/artists/#{ENV['PRIMARY_USER_ID']}/images" %>
+<%= link_to "Edit Events", "/artists/#{ENV['PRIMARY_USER_ID']}/events" %>
 <%= link_to "Log out", "/logout" %>
 <% end %>

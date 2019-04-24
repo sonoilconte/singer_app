@@ -47,7 +47,7 @@
 
 <p>
   <% @artist.images.each do |image| %>
-    <%= image_tag(image) %>
+    <%= image_tag(image.file) %>
   <% end %>
 </p>
 

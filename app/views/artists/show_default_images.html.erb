@@ -4,7 +4,7 @@
 <h1>Gallery</h1>
 
   <% @artist.images.each do |image| %>
-    <%= image_tag(image) %>
+    <%= image_tag(image.file) %>
   <% end %>
 
 <% else %>
