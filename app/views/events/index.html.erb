@@ -1,2 +1,66 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<%= render 'shared/admin_menu' %>
+<%= render 'shared/current_user' %>
+
+<h1>events</h1>
+
+<% if @events && @events.length > 0  %>
+
+<p>
+<%=
+link_to 'Add new event',
+"/artists/#{@events[0].artist_id}/events/new"
+%>
+</p>
+
+<% @events.each do |event| %>
+<p>ID: <%= event.id %></p>
+<p>Title: <%= event.title %></p>
+<p>Description: <%= event.description %></p>
+<p>URL: <%= event.url %></p>
+<p>Time: <%= event.datetime %></p>
+<p>
+
+  <% if event.image.attachment %>
+  <%= image_tag(event.image) %>
+  <% else %>
+  <%= p 'No event image attachment found' %>
+  <% end %>
+
+  <%
+  if event.image && event.image.attachment
+    filename_string = event.image.filename.to_s
+  else
+    filename_string = 'unknown'
+  end
+  %>
+
+  <p>
+    <%=
+    link_to 'View event',
+    "/artists/#{event.artist_id}/events/#{event.id}"
+    %>
+  </p>
+  <p>
+  <%=
+    link_to 'Edit event',
+    "/artists/#{event.artist_id}/events/#{event.id}/edit"
+  %>
+  </p>
+  <p>
+    <%=
+    link_to 'Delete event',
+    "/artists/#{event.artist_id}/events/#{event.id}",
+    data: { confirm: "Are you sure you want to delete event with filename #{filename_string}" },
+    method: :delete
+    %>
+  </p>
+
+</p>
+<hr>
+<% end %>
+
+<% else %>
+  <p>
+  <%= p "No events found" %>
+  </p>
+<% end %>
