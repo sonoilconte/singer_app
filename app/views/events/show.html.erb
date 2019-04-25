@@ -1,0 +1,41 @@
+<%= render 'shared/admin_menu' %>
+<%= render 'shared/current_user' %>
+
+<% if @event %>
+<h1>
+  <% if @event.title %>
+  <%= @event.title %>
+  <% else %>
+  <%= p 'Event title not found' %>
+  <% end %>
+</h1>
+
+<h2>
+  Date
+</h2>
+
+<p>
+  <% if @event.datetime %>
+  <%= @event.datetime %>
+  <% else %>
+  <%= p 'Event date/time not found' %>
+  <% end %>
+</p>
+
+<p>
+  <% if @event.image.attachment %>
+  <%= image_tag(@event.image) %>
+  <% else %>
+  <%= p 'Event image file not found' %>
+  <% end %>
+</p>
+
+<p>
+  <%= link_to 'Edit Event', "/artists/#{@event.artist_id}/event/#{@event.id}/edit" %>
+</p>
+
+<% else %>
+<h1>
+  <%= p 'Event not found'%>
+</h1>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_23_011148) do
+ActiveRecord::Schema.define(version: 2019_04_25_214828) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 2019_04_23_011148) do
   create_table "artists_users", id: false, force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "artist_id", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.datetime "datetime"
+    t.boolean "archived"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "artist_id"
+    t.index ["artist_id"], name: "index_events_on_artist_id"
   end
 
   create_table "images", force: :cascade do |t|

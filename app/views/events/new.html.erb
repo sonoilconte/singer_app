@@ -1,0 +1,43 @@
+<%= render 'shared/admin_menu' %>
+<%= render 'shared/current_user' %>
+
+<h1>Add a New event</h1>
+
+<%= form_with scope: :event, local: true do |form| %>
+
+<p>
+  <%= form.label :artist_id %>
+  <%= form.text_field :artist_id %>
+</p>
+<p>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+</p>
+<p>
+  <%= form.label :datetime %>
+  <%= form.text_field :datetime %>
+</p>
+<p>
+  <%= form.label :description %>
+  <%= form.text_field :description %>
+</p>
+<p>
+  <%= form.label :url %>
+  <%= form.text_field :url %>
+</p>
+<p>
+  <%= form.label :archived %>
+  <%= form.text_field :archived %>
+</p>
+<p>
+  <%= form.label :image %>
+  <img src="" id="image_preview">
+  <%= form.file_field :image, multiple: false, :onchange => 'load_file(event)' %>
+</p>
+
+
+<p>
+  <%= form.submit 'Add new event' %>
+</p>
+
+<% end %>
