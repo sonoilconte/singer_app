@@ -1,7 +1,4 @@
 class ImagesController < ApplicationController
-  def new
-    redirect_unauthorized_user(current_user, params[:id])
-  end
 
   def index
     redirect_unauthorized_user(current_user, params[:id])
@@ -11,6 +8,10 @@ class ImagesController < ApplicationController
   def show
     redirect_unauthorized_user(current_user, params[:id])
     @image = Image.find_by(id: params[:image_id])
+  end
+
+  def new
+    redirect_unauthorized_user(current_user, params[:id])
   end
 
   def create

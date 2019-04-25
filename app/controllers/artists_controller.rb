@@ -1,9 +1,5 @@
 class ArtistsController < ApplicationController
 
-  def new
-    redirect_non_admin(current_user)
-  end
-
   def index
     redirect_non_admin(current_user)
     @artists = Artist.all
@@ -12,6 +8,10 @@ class ArtistsController < ApplicationController
   def show
     redirect_non_admin(current_user)
     @artist = Artist.find_by(id: params[:id])
+  end
+
+  def new
+    redirect_non_admin(current_user)
   end
 
   def create
