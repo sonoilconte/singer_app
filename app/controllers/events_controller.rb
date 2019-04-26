@@ -22,14 +22,22 @@ class EventsController < ApplicationController
 
   def edit
     redirect_unauthorized_user(current_user, params[:id])
+    @event = Event.find_by(id: params[:event_id])
   end
 
   def update
     redirect_unauthorized_user(current_user, params[:id])
+    event = Event.find_by(id: params[:event_id])
+    if event.update_attributes(event_params)
+      flash[:notice] = "Event info saved"
+    end
+    redirect_to "/artists/#{params[:id]}/events/#{params[:event_id]}"
   end
 
   def delete
     redirect_unauthorized_user(current_user, params[:id])
+    Event.delete(params[:event_id])
+    redirect_to "/artists/#{params[:id]}/events/"
   end
 
   private
