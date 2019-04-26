@@ -15,11 +15,11 @@
 </p>
 <p>
   <%= form.label :datetime %>
-  <%= form.text_field :datetime %>
+  <%= form.text_field :datetime, id: 'flatpickr' %>
 </p>
 <p>
   <%= form.label :description %>
-  <%= form.text_field :description %>
+  <%= form.rich_text_area :description %>
 </p>
 <p>
   <%= form.label :url %>
@@ -34,7 +34,6 @@
   <img src="" id="image_preview">
   <%= form.file_field :image, multiple: false, :onchange => 'load_file(event)' %>
 </p>
-
 
 <p>
   <%= form.submit 'Add new event' %>

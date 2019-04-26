@@ -13,4 +13,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require flatpickr
+//= require flatpickr_selector
 //= require_tree .
