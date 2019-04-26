@@ -3,14 +3,14 @@
 
 <h1>Images</h1>
 
-<% if @images && @images.length > 0  %>
-
 <p>
-<%=
-link_to 'Add new image',
-"/artists/#{@images[0].artist_id}/images/new"
-%>
+  <%=
+  link_to 'Add new image',
+  "/artists/#{params[:id]}/images/new"
+  %>
 </p>
+
+<% if @images && @images.length > 0  %>
 
 <% @images.each do |image| %>
 <p>ID: <%= image.id %></p>
