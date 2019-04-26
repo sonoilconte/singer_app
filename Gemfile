@@ -7,8 +7,8 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0.beta3'
 gem 'webpacker', github: 'rails/webpacker'
-# may need to explicitly include actiontext
-# gem 'actiontext', require: 'action_text'
+# Datetime picker for events on artist schedules
+gem 'flatpickr_rails'
 gem 'image_processing', '~> 1.2'
 # hirb for easy table viewing in terminal
 gem 'hirb', '~>0.7.0'

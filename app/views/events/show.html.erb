@@ -16,15 +16,16 @@
 
 <p>
   <% if @event.datetime %>
-  <%= @event.datetime %>
+  <%= @event.datetime.strftime('%B %e, %Y at %l:%M%P') %>
   <% else %>
   <%= p 'Event date/time not found' %>
   <% end %>
 </p>
 
+<p><%= @event.description %></p>
 <p>
   <% if @event.image.attachment %>
-  <%= image_tag(@event.image) %>
+  <%= link_to image_tag(@event.image), @event.url %>
   <% else %>
   <%= p 'Event image file not found' %>
   <% end %>

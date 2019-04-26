@@ -29,13 +29,13 @@
     <%= form.label :datetime %>
   </h2>
   <p>
-    <%= form.text_field :datetime %>
+    <%= form.text_field :datetime, id: 'flatpickr' %>
   </p>
   <h2>
     <%= form.label :description %>
   </h2>
   <p>
-    <%= form.text_field :description %>
+    <%= form.rich_text_area :description %>
   </p>
   <h2>
     <%= form.label :url %>
@@ -53,7 +53,14 @@
     <%= form.label :image %>
   </h2>
   <p>
-    <%= image_tag(@event.image, id: 'image_preview') %>
+    <%
+      if @event.image.attachment
+        image = @event.image
+      else
+        image = ''
+      end
+    %>
+    <%= link_to image_tag(image, id: 'image_preview'), @event.url %>
     <%= form.file_field :image, multiple: false, :onchange => 'load_file(event)' %>
   </p>
   <p>
