@@ -7,6 +7,57 @@
   <%= @artist.schedule %>
 </p>
 
+<%
+# use sorted @events for the artist
+# create a new hash that will store the events by season
+# loop through events
+# define season as year minus 4 months so Jan 1 - 4 is Sep 1 to Aug 31
+# determine season of the event
+  # date + 4 months gives you a year
+  # then season is 'year -1 to year' season
+# stick event in appropriate season in hash
+# print the hash by season with the events in ascending order
+
+schedule = Hash.new()
+@events.each do | event |
+
+  # p event.datetime
+  # p year = event.datetime.year
+  ending_year = event.datetime.advance(:months => 4).year
+  p season = "#{ending_year - 1}-#{ending_year}"
+
+  if schedule[season]
+    schedule[season] << event
+  else
+    schedule[season] = []
+    schedule[season] << event
+  end
+end
+
+p "schedule", schedule
+
+%>
+
+<% schedule.each do |season, event_list | %>
+<p>
+  <%= p season %>
+  <% event_list.each do | event | %>
+    <p>
+      <%= p event.datetime %>
+    </p>
+    <p>
+      <%= p event.title %>
+    </p>
+    <p>
+      <%= p event.url %>
+    </p>
+  <% end %>
+  <!-- <%= p event_list %> -->
+</p>
+<% end %>
+
+ <!-- <%= p @events %> -->
+
 <% else %>
 <h1>
   <%= p 'Artist not found'%>
