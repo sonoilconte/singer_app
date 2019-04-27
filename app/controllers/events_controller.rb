@@ -2,7 +2,8 @@ class EventsController < ApplicationController
 
   def index
     redirect_unauthorized_user(current_user, params[:id])
-    @events = Event.where(artist_id: params[:id])
+    events = Event.where(artist_id: params[:id])
+    @events = events.sort_by { |event| event.datetime }
   end
 
   def show

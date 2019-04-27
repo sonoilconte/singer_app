@@ -62,7 +62,8 @@ class ArtistsController < ApplicationController
 
   def show_default_schedule
     current_user
-    default_artist
+    artist_id = default_artist.id
+    @events = Event.where(artist_id: artist_id).sort_by { |event| event.datetime }
   end
 
   def show_default_resume
