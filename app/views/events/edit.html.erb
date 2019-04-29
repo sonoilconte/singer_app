@@ -23,7 +23,7 @@
     <%= form.label :title %>
   </h2>
   <p>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, :required => true %>
   </p>
   <h2>
     <%= form.label :datetime %>
@@ -47,7 +47,7 @@
     <%= form.label :archived %>
   </h2>
   <p>
-    <%= form.text_field :archived %>
+    <%= form.text_field :archived, :required => true %>
   </p>
   <h2>
     <%= form.label :image %>

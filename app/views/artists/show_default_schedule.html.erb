@@ -43,7 +43,7 @@ p "schedule", schedule
   <%= p season %>
   <% event_list.each do | event | %>
     <p>
-      <%= p event.datetime %>
+      <%= p event.datetime.strftime('%B %e, %Y at %l:%M%P') %>
     </p>
     <p>
       <%= p event.title %>
@@ -51,6 +51,10 @@ p "schedule", schedule
     <p>
       <%= p event.url %>
     </p>
+    <p>
+      <%= image_tag(event.image) %>
+    </p>
+    <hr>
   <% end %>
   <!-- <%= p event_list %> -->
 </p>
