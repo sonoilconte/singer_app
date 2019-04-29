@@ -11,11 +11,11 @@
 </p>
 <p>
   <%= form.label :title %>
-  <%= form.text_field :title %>
+  <%= form.text_field :title, :required => true %>
 </p>
 <p>
   <%= form.label :datetime %>
-  <%= form.text_field :datetime, id: 'flatpickr' %>
+  <%= form.text_field :datetime, id: 'flatpickr', :value => DateTime.now %>
 </p>
 <p>
   <%= form.label :description %>
@@ -27,7 +27,7 @@
 </p>
 <p>
   <%= form.label :archived %>
-  <%= form.text_field :archived %>
+  <%= form.text_field :archived, :required => true %>
 </p>
 <p>
   <%= form.label :image %>
