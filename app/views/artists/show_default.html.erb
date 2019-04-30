@@ -9,6 +9,17 @@
   <% end %>
 </h1>
 
+<div class="">
+  <% if image = @artist.images.select{ |image|
+      image.category == 'featured'
+    }[0]
+  %>
+    <%= image_tag(image.file) %>
+  <% else %>
+    <%= p 'No featured image found' %>
+  <% end %>
+</div>
+
 <p>
   <% if @artist.bio %>
   <%= @artist.bio %>
