@@ -15,7 +15,7 @@
 </p>
 <p>
   <%= form.label :category %>
-  <%= form.text_field :category %>
+  <%= form.select(:category, options_for_select(@options)) %>
 </p>
 <p>
   <%= form.label :order %>
