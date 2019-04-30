@@ -18,6 +18,7 @@
 <p>Description: <%= event.description %></p>
 <p>URL: <%= event.url %></p>
 <p>Time: <%= event.datetime.strftime('%B %e, %Y at %l:%M%P') %></p>
+<p>Archived: <%= event.archived %></p>
 <p>
 
   <% if event.image.attachment %>
