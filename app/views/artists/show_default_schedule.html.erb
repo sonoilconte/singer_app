@@ -52,7 +52,15 @@ p "schedule", schedule
       <%= p event.url %>
     </p>
     <p>
+      <%= p event.description %>
+    </p>
+    <p>
+      <% if event.image.attachment %>
       <%= image_tag(event.image) %>
+      <% end %>
+    </p>
+    <p>
+      <%= p event.archived %>
     </p>
     <hr>
   <% end %>
