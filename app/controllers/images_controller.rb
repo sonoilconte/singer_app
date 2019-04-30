@@ -12,6 +12,7 @@ class ImagesController < ApplicationController
 
   def new
     redirect_unauthorized_user(current_user, params[:id])
+    category_options
   end
 
   def create
@@ -23,6 +24,7 @@ class ImagesController < ApplicationController
   def edit
     redirect_unauthorized_user(current_user, params[:id])
     @image = Image.find_by(id: params[:image_id])
+    category_options
   end
 
   def update
@@ -44,5 +46,9 @@ class ImagesController < ApplicationController
 
   def image_params
     params.require(:image).permit(:name, :category, :order, :file, :artist_id)
+  end
+
+  def category_options
+    @options = [['featured', 'featured'],['gallery', 'gallery']]
   end
 end

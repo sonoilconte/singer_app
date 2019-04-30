@@ -29,7 +29,7 @@
     <%= form.label :category %>
   </h2>
   <p>
-    <%= form.text_field :category %>
+    <%= form.select(:category, options_for_select(@options, @image.category)) %>
   </p>
   <h2>
     <%= form.label :order %>
