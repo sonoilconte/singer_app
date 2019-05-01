@@ -20,13 +20,17 @@
   <% end %>
 </div>
 
-<p>
-  <% if @artist.bio %>
-  <%= @artist.bio %>
+<div id="home_bio">
+  <% if @artist.biography %>
+    <%= @artist.biography %>
   <% else %>
   <%= p 'Artist bio not found' %>
   <% end %>
-</p>
+</div>
+
+<div class="">
+  <a href="/bio">Click to read <%= @artist.name %>'s full biography</a>
+</div>
 
 <% else %>
 <h1>

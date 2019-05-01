@@ -9,13 +9,18 @@
   <% end %>
 </h1>
 
-<p>
-  <% if @artist.bio %>
-  <%= @artist.bio %>
-  <% else %>
-  <%= p 'Artist bio not found' %>
+<div style="width: 800px; height: 800px">
+  <% if @artist.resume.attachment %>
+  <object title="<%= @artist.name %>"
+    type="application/pdf"
+    data="<%= rails_blob_path(@artist.resume) %>"
+    width="100%"
+    height="100%"
+  >
+  <p>Link <a href="<%= rails_blob_path(@artist.resume) %>">to the PDF</a></p>
+  </object>
   <% end %>
-</p>
+</div>
 
 <% else %>
 <h1>

@@ -29,6 +29,13 @@
     <p>
       <%= form.rich_text_area :biography %>
     </p>
+
+    <h2> <%= form.label :resume %></h2>
+    <p>
+      <%= image_tag(@artist.resume.preview(resize: "400x400>")) %>
+      <%= form.file_field :resume, multiple: false %>
+    </p>
+
     <h2>
       <%= form.label :schedule %>
     </h2>
