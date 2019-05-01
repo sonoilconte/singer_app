@@ -35,7 +35,7 @@
     <%= form.label :order %>
   </h2>
   <p>
-    <%= form.text_field :order %>
+    <%= form.select(:order, options_for_select(@integer_range, @image.order))  %>
   </p>
   <h2>
     <%= form.label :file %>

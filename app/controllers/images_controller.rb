@@ -13,6 +13,7 @@ class ImagesController < ApplicationController
   def new
     redirect_unauthorized_user(current_user, params[:id])
     category_options
+    order_integer_range
   end
 
   def create
@@ -25,6 +26,7 @@ class ImagesController < ApplicationController
     redirect_unauthorized_user(current_user, params[:id])
     @image = Image.find_by(id: params[:image_id])
     category_options
+    order_integer_range
   end
 
   def update
@@ -50,5 +52,9 @@ class ImagesController < ApplicationController
 
   def category_options
     @options = [['featured', 'featured'],['gallery', 'gallery']]
+  end
+
+  def order_integer_range
+    @integer_range = Array (1..20)
   end
 end
