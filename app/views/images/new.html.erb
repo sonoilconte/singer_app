@@ -19,7 +19,7 @@
 </p>
 <p>
   <%= form.label :order %>
-  <%= form.text_field :order %>
+  <%= form.select(:order, options_for_select(@integer_range)) %>
 </p>
 <p>
   <%= form.label :file %>

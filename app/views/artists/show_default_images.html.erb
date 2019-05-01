@@ -3,7 +3,9 @@
 <% if @artist %>
 <h1>Gallery</h1>
 
-  <% @artist.images.each do |image| %>
+  <% sorted_images = @artist.images.sort_by { |image| image.order } %>
+  <% sorted_images.each do |image| %>
+    <%= p image.order %>
     <%= image_tag(image.file) %>
   <% end %>
 
