@@ -42,6 +42,20 @@
     <p>
       <%= form.text_area :schedule, cols: 50, rows: 10 %>
     </p>
+
+    <h2>
+      <%= form.label :media %>
+    </h2>
+    <p>
+      Paste html to embed media players (e.g. Sound Cloud, YouTube)
+    </p>
+    <p>
+      <%= form.text_area :media, cols: 100, rows: 20 %>
+      <div class="">
+        <%= @artist.media.html_safe %>
+      </div>
+    </p>
+
     <h2>
       <%= form.label :management %>
     </h2>
