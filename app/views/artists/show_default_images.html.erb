@@ -3,14 +3,18 @@
 <% if @artist %>
 <h1>Gallery</h1>
 
-  <% sorted_images = @artist.images.sort_by { |image| image.order } %>
+  <% sorted_images = @artist.images.select { |image| image.category == 'gallery' }
+    .sort_by { |image| image.order }
+  %>
   <% sorted_images.each do |image| %>
-    <%= p image.order %>
-    <%= image_tag(image.file) %>
+    <%= link_to image_tag(image.file.variant(resize_to_limit: [200,200])),
+        rails_blob_path(image.file),
+        data: { lightbox: image.category, title: image.name }
+    %>
   <% end %>
-
 <% else %>
 <h1>
   <%= p 'Artist not found' %>
 </h1>
+
 <% end %>
