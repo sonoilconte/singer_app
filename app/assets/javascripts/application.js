@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require flatpickr
 //= require flatpickr_selector
+//= require lightbox
 //= require_tree .
