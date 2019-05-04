@@ -51,7 +51,7 @@ class ImagesController < ApplicationController
   end
 
   def category_options
-    @options = [['featured', 'featured'],['gallery', 'gallery']]
+    @options = ['logo', 'featured', 'gallery']
   end
 
   def order_integer_range

@@ -1,0 +1,8 @@
+<% logo = @artist.images.select { |image| image.category == 'logo' }[0].file %>
+<div id="logo" class="row">
+  <div class="col-xs-12 center">
+    <!-- <h1>Meredith Hansen</h1> -->
+    <!-- <img src="./hansen.png" alt="Meredith Hansen, Soprano"> -->
+    <%= image_tag(logo) %>
+  </div>
+</div>

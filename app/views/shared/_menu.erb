@@ -1,10 +1,27 @@
-<%= link_to 'Home', '/' %>
-<%= link_to 'Bio', '/bio' %>
-<%= link_to 'Resume', '/resume' %>
-<%= link_to 'Schedule', '/schedule' %>
-<%= link_to 'Listen', '/listen' %>
-<%= link_to 'Gallery', '/gallery' %>
-<%= link_to 'Contact', '/contact' %>
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+         <span class="sr-only">Toggle navigation</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </button>
+   </div>
+   <div id="navbar" class="navbar-collapse collapse">
+     <ul class="nav navbar-nav">
+       <li class="active"><%= link_to 'Home', '/' %></li>
+       <li><%= link_to 'Bio', '/bio' %></li>
+       <li><%= link_to 'Resume', '/resume' %></li>
+       <li><%= link_to 'Schedule', '/schedule' %></li>
+       <li><%= link_to 'Gallery', '/gallery' %></li>
+       <li><%= link_to 'Listen', '/listen' %></li>
+       <li><%= link_to 'Contact', '/contact' %></li>
+     </ul>
+   </div>
+ </div>
+</nav>
 
 <% if @current_user %>
   <% p @current_user %>
