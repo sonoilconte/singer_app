@@ -83,6 +83,11 @@ body {
   padding-bottom: 15px;
 }
 
+.page-header {
+  font-family: Georgia, serif;
+  font-size: 2em;
+}
+
 /* Text sections */
 .text-frame {
   padding-top: 15px;

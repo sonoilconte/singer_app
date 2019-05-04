@@ -2,39 +2,37 @@
 <%= render 'shared/menu' %>
 
 <% if @artist %>
-<h1>
-  <% if @artist.name %>
-  <%= @artist.name %>
-  <% else %>
-  <%= p 'Artist name not found' %>
-  <% end %>
-</h1>
-
-<div class="">
-  <% if image = @artist.images.select{ |image|
-      image.category == 'featured'
-    }[0]
-  %>
-    <%= image_tag(image.file) %>
-  <% else %>
-    <%= p 'No featured image found' %>
-  <% end %>
+<div class="row">
+  <div class="col-xs-6 col-md-4 col-md-offset-1 featured-image-frame" style="background-color:inherit;">
+    <div class="">
+      <% if image = @artist.images.select{ |image|
+        image.category == 'featured'
+        }[0]
+        %>
+        <%= image_tag(image.file.variant(resize_to_limit: [800, 800]), alt: 'Meredith Hansen Headshot', class: 'featured-image') %>
+        <% else %>
+        <%= p 'No featured image found' %>
+        <% end %>
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-5 text-frame">
+    <div id="home_bio">
+      <% if @artist.biography %>
+      <%= @artist.biography %>
+      <% else %>
+      <%= p 'Artist bio not found' %>
+      <% end %>
+    </div>
+    <a href="/biography">Click to read <%= @artist.name %>'s full biography</a>
+  </div>
 </div>
 
-<div id="home_bio">
-  <% if @artist.biography %>
-    <%= @artist.biography %>
-  <% else %>
-  <%= p 'Artist bio not found' %>
-  <% end %>
-</div>
 
-<div class="">
-  <a href="/bio">Click to read <%= @artist.name %>'s full biography</a>
-</div>
 
 <% else %>
-<h1>
+<div>
   <%= p 'Artist not found'%>
-</h1>
+</div>
 <% end %>
+
+<%= render 'shared/footer' %>
