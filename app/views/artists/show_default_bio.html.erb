@@ -2,24 +2,20 @@
 <%= render 'shared/menu' %>
 
 <% if @artist %>
-<h1> Bio <br>
-  <% if @artist.name %>
-  <%= @artist.name %>
-  <% else %>
-  <%= p 'Artist name not found' %>
-  <% end %>
-</h1>
-
-<p>
-  <% if @artist.biography %>
-  <%= @artist.biography %>
-  <% else %>
-  <%= p 'Artist bio not found' %>
-  <% end %>
-</p>
-
-<% else %>
-<h1>
-  <%= p 'Artist not found'%>
-</h1>
-<% end %>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-frame">
+    <div class="page-header">Biography</div>
+    <div>
+      <% if @artist.biography %>
+      <%= @artist.biography %>
+      <% else %>
+      <%= p 'Artist bio not found' %>
+      <% end %>
+    </div>
+    <% else %>
+    <div>
+      <%= p 'Artist not found'%>
+    </div>
+    <% end %>
+  </div>
+</div>

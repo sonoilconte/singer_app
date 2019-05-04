@@ -11,19 +11,14 @@
    </div>
    <div id="navbar" class="navbar-collapse collapse">
      <ul class="nav navbar-nav">
-       <li class="active"><%= link_to 'Home', '/' %></li>
-       <li><%= link_to 'Bio', '/bio' %></li>
-       <li><%= link_to 'Resume', '/resume' %></li>
-       <li><%= link_to 'Schedule', '/schedule' %></li>
-       <li><%= link_to 'Gallery', '/gallery' %></li>
-       <li><%= link_to 'Listen', '/listen' %></li>
-       <li><%= link_to 'Contact', '/contact' %></li>
+       <%= nav_link 'Home', '/' %>
+       <%= nav_link 'Biography', '/biography' %>
+       <%= nav_link 'Resume', '/resume' %>
+       <%= nav_link 'Schedule', '/schedule' %>
+       <%= nav_link 'Gallery', '/gallery' %>
+       <%= nav_link 'Listen', '/listen' %>
+       <%= nav_link 'Contact', '/contact' %>
      </ul>
    </div>
  </div>
 </nav>
-
-<% if @current_user %>
-  <% p @current_user %>
-  <%= link_to 'Admin Portal', "/artists/#{ENV['PRIMARY_USER_ID']}/edit" %>
-<% end %>

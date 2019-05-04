@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # TODO: Can probably make this and the controller DRYer by using a param
   # after the / and then feeding it to the correct view in the controller using that param
   get '/' => 'artists#show_default'
-  get '/bio' => 'artists#show_default_bio'
+  get '/biography' => 'artists#show_default_bio'
   get '/schedule' => 'artists#show_default_schedule'
   get '/resume' => 'artists#show_default_resume'
   get '/listen' => 'artists#show_default_media'
