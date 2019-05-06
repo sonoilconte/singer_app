@@ -110,8 +110,8 @@ body {
 }
 
 .schedule-image {
-  width: 100%;
   max-width: 250px;
+  max-height: 250px;
 }
 
 @media (max-width: 767px) {
@@ -129,6 +129,19 @@ body {
     width: 80%;
     margin: 0 auto;
   }*/
+}
+
+/* Image Gallery view */
+
+.gallery-image-frame {
+  width: 220px;
+  height: 220px;
+  float: left;
+}
+
+.gallery-image {
+  display: block;
+  margin: 10px auto;
 }
 
 #footer {
