@@ -1,21 +1,28 @@
 <%= render 'shared/logo' %>
 <%= render 'shared/menu' %>
 
-<% if @artist %>
-<h1>Gallery</h1>
 
-  <% sorted_images = @artist.images.select { |image| image.category == 'gallery' }
-    .sort_by { |image| image.order }
-  %>
-  <% sorted_images.each do |image| %>
-    <%= link_to image_tag(image.file.variant(resize_to_limit: [200,200])),
-        rails_blob_path(image.file),
-        data: { lightbox: image.category, title: image.name }
-    %>
-  <% end %>
-<% else %>
-<h1>
-  <%= p 'Artist not found' %>
-</h1>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-frame">
+    <div class="page-header">Gallery</div>
+    <% if @artist %>
+      <% sorted_images = @artist.images.select { |image| image.category == 'gallery' }
+        .sort_by { |image| image.order }
+      %>
+      <% sorted_images.each do |image| %>
+        <div class="gallery-image-frame">
+          <%= link_to image_tag(image.file.variant(resize_to_limit: [200,200]), class: 'gallery-image'),
+          rails_blob_path(image.file),
+          data: { lightbox: image.category, title: image.name }
+          %>
+        </div>
+      <% end %>
+    <% else %>
+    <div class="page-header">
+      <%= p 'Artist not found' %>
+    </div>
+    <% end %>
+  </div>
+</div>
 
-<% end %>
+<%= render 'shared/footer' %>

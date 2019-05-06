@@ -8,8 +8,4 @@ module ApplicationHelper
     end
   end
 
-  def tester(arg)
-    p "Here is the arg #{arg}"
-  end
-
 end

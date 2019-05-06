@@ -1,12 +1,7 @@
 <%= render 'shared/logo' %>
 <%= render 'shared/menu' %>
 
-<h1>Schedule</h1>
-
 <% if @artist %>
-<p>
-  <%= @artist.schedule %>
-</p>
 
 <%
 # use sorted @events for the artist
@@ -35,44 +30,52 @@ schedule = Hash.new()
   end
 end
 
-p "schedule", schedule
-
 %>
 
-<% schedule.each do |season, event_list | %>
-<p>
-  <%= p season %>
-  <% event_list.each do | event | %>
-    <p>
-      <%= p event.datetime.strftime('%B %e, %Y at %l:%M%P') %>
-    </p>
-    <p>
-      <%= p event.title %>
-    </p>
-    <p>
-      <%= p event.url %>
-    </p>
-    <p>
-      <%= p event.description %>
-    </p>
-    <p>
-      <% if event.image.attachment %>
-      <%= image_tag(event.image) %>
-      <% end %>
-    </p>
-    <p>
-      <%= p event.archived %>
-    </p>
-    <hr>
-  <% end %>
-  <!-- <%= p event_list %> -->
-</p>
-<% end %>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-frame">
+    <div class="page-header">
+      Schedule
+    </div>
+  </div>
+</div>
 
- <!-- <%= p @events %> -->
+<% schedule.each do |season, event_list | %>
+
+<div class="row">
+  <div class="col-xs-12 section-header">
+    <hr/>
+    <%= p season %>
+    <hr/>
+  </div>
+</div>
+
+  <% event_list.each do | event | %>
+
+<div class="row">
+  <div class="col-sm-6 text-frame">
+    <div class="schedule-image-frame">
+      <% if event.image.attachment %>
+      <%= link_to image_tag(event.image, class: 'schedule-image'), event.url %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-6 text-frame">
+    <div class="schedule-text-frame">
+      <%= p event.title %><br>
+      <%= p event.datetime.strftime('%B %e, %Y at %l:%M%P') %><br/>
+      <%= p event.description %>
+    </div>
+  </div>
+</div>
+  <% end %>
+
+<% end %>
 
 <% else %>
-<h1>
-  <%= p 'Artist not found'%>
-</h1>
+<div class="page-header">
+  Artist not found
+</div>
 <% end %>
+
+<%= render 'shared/footer' %>
