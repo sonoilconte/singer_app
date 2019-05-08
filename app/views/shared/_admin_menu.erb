@@ -1,9 +1,15 @@
-<% if !@current_user %>
-  <%= link_to "Log in", "/login" %>
-<% else %>
-<%= link_to "Site", "/" %>
-<%= link_to "Edit Info", "/artists/#{ENV['PRIMARY_USER_ID']}/edit" %>
-<%= link_to "Edit Images", "/artists/#{ENV['PRIMARY_USER_ID']}/images" %>
-<%= link_to "Edit Events", "/artists/#{ENV['PRIMARY_USER_ID']}/events" %>
-<%= link_to "Log out", "/logout" %>
-<% end %>
+<div class="row">
+  <div class="col-xs-12 admin-padding">
+    <% if !@current_user %>
+    <%= link_to "Log in", "/login" %>
+    <% else %>
+    <%= link_to "Site", "/" %>
+    <%= link_to "Edit Info", "/artists/#{ENV['PRIMARY_USER_ID']}/edit" %>
+    <%= link_to "Edit Images", "/artists/#{ENV['PRIMARY_USER_ID']}/images" %>
+    <%= link_to "Edit Events", "/artists/#{ENV['PRIMARY_USER_ID']}/events" %>
+    <%= link_to "Log out", "/logout" %>
+    <% end %>
+
+    <h1>Admin Portal</h1>
+  </div>
+</div>
