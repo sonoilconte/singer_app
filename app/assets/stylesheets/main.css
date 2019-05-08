@@ -144,6 +144,24 @@ body {
   margin: 10px auto;
 }
 
+/* Media view */
+
+.media iframe {
+  padding: 20px 0;
+}
+
+/* Contact view */
+/*
+  User can drag and drop an image into the trix WYSIWYG editor
+  Removing image caption that gets displayed by default
+*/
+.contact {
+  text-align: center;
+}
+.contact figcaption {
+  display: none;
+}
+
 #footer {
   padding: 20px;
   background-color: #E4E4E4;

@@ -1,21 +1,22 @@
 <%= render 'shared/logo' %>
 <%= render 'shared/menu' %>
 
-<% if @artist %>
-<h1> Listen </h1>
 
-<p>
-  <% if @artist.media %>
-  <%= @artist.media.html_safe %>
-  <% else %>
-  <%= p 'Artist media not found' %>
-  <% end %>
-</p>
-
-<% else %>
-<h1>
-  <%= p 'Artist not found'%>
-</h1>
-<% end %>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-frame media">
+    <div class="page-header">Listen</div>
+    <% if @artist %>
+      <% if @artist.media %>
+      <%= @artist.media.html_safe %>
+      <% else %>
+      <%= p 'Artist media not found' %>
+      <% end %>
+    <% else %>
+    <div class="page-header">
+      <%= p 'Artist not found'%>
+    </div>
+    <% end %>
+  </div>
+</div>
 
 <%= render 'shared/footer' %>
