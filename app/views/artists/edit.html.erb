@@ -1,75 +1,58 @@
-<%= render 'shared/admin_menu' %>
 <%= render 'shared/current_user' %>
+<%= render 'shared/admin_menu' %>
 
-<h1>Edit Artist</h1>
 
-<% if flash[:notice] %>
-  <h2><%= flash[:notice] %></h2>
-<% end %>
+
 
 <% if @artist %>
-
   <%= form_with scope: :artist, local: true, url: "/artists/#{@artist.id}", :html=> {:method=>:put} do |form| %>
+  <div class="row">
+    <div class="col-xs-12 admin-padding">
+      <% if flash[:notice] %>
+      <div class="admin-flash"><%= flash[:notice] %></div>
+      <% end %>
+      <div class="admin-page-header">Edit Artist Information</div>
+      <div><%= form.label :name, class: 'admin-label' %></div>
+      <div><%= form.text_field :name, class: 'admin-input' %></div>
+    </div>
+    <div class="col-xs-12 admin-padding">
+      <div><%= form.label :biography, class: 'admin-label' %></div>
+      <div><%= form.rich_text_area :biography %></div>
+    </div>
+  </div>
 
-    <h2>
-      <%= form.label :id %>
-    </h2>
-    <p>
-      <%= form.text_field :id %>
-    </p>
-    <h2>
-      <%= form.label :name %>
-    </h2>
-    <p>
-      <%= form.text_field :name %>
-    </p>
-    <h2>
-      <%= form.label :biography %>
-    </h2>
-    <p>
-      <%= form.rich_text_area :biography %>
-    </p>
+  <div class="row">
+    <div class="col-sm-5 admin-padding">
+      <div class="">
+        <%= form.label :resume, class: 'admin-label' %>
+      </div>
+      <div class="">
+        <%= image_tag(@artist.resume.preview(resize: "400x400>")) %>
+      </div>
+      <div class="">
+        <%= form.file_field :resume, multiple: false %>
+      </div>
+    </div>
+    <div class="col-sm-7 admin-padding">
+      <div><%= form.label :management, class: 'admin-label' %></div>
+      <div><%= form.rich_text_area :management %></div>
+      <div><%= form.label :management_url, class: 'admin-label' %></div>
+      <div><%= form.text_field :management_url, class: 'admin-input' %></div>
+    </div>
+  </div>
 
-    <h2> <%= form.label :resume %></h2>
-    <p>
-      <%= image_tag(@artist.resume.preview(resize: "400x400>")) %>
-      <%= form.file_field :resume, multiple: false %>
-    </p>
+  <div class="row">
+    <div class="col-xs-12 admin-padding media-edit">
+      <div><%= form.label :media, class: 'admin-label' %></div>
+      <div>
+        Paste html to embed media players (e.g. Sound Cloud, YouTube).
+        HTML is shown here, but actual embedded players will appear on your website.
+      </div>
+      <div><%= form.text_area :media %></div>
+      <div><%= form.submit 'Save', class: 'admin-button' %></div>
+    </div>
+  </div>
 
-    <h2>
-      <%= form.label :schedule %>
-    </h2>
-    <p>
-      <%= form.text_area :schedule, cols: 50, rows: 10 %>
-    </p>
-
-    <h2>
-      <%= form.label :media %>
-    </h2>
-    <p>
-      Paste html to embed media players (e.g. Sound Cloud, YouTube).
-      HTML is shown here, but actual embedded players will appear on your website.
-    </p>
-    <p>
-      <%= form.text_area :media, cols: 100, rows: 20 %>
-    </p>
-
-    <h2>
-      <%= form.label :management %>
-    </h2>
-    <p>
-     <%= form.rich_text_area :management %>
-    </p>
-    <h2>
-      <%= form.label :management_url %>
-    </h2>
-    <p>
-      <%= form.text_field :management_url %>
-    </p>
-    <p>
-      <%= form.submit 'Save' %>
-    </p>
-  <!-- End of form -->
   <% end %>
 
   <!-- Comment out images view here for now -->
@@ -93,17 +76,18 @@
 =end
 %>
 
-  <% if @current_user.email == ENV['ADMIN_EMAIL'] %>
-  <p>
-    <%=
+  <div class="row">
+    <div class="col-xs-12 admin-padding">
+      <% if @current_user.email == ENV['ADMIN_EMAIL'] %>
+      <%=
       button_to 'Delete Artist', artists_delete_path(@artist),
       data: { confirm: "Are you sure you want to delete #{@artist.name}?" },
-      method: :delete
-    %>
-  </p>
+      method: :delete,
+      class: 'admin-button'
+      %>
+    </div>
+      <% end %>
+  </div>
+  <% else %>
+  <div>Artist not found</div>
   <% end %>
-<% else %>
-  <p>
-    Artist not found
-  </p>
-<% end %>
