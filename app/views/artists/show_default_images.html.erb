@@ -3,7 +3,7 @@
 
 
 <div class="row">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-frame">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-frame">
     <div class="page-header">Gallery</div>
     <% if @artist %>
       <% sorted_images = @artist.images.select { |image| image.category == 'gallery' }

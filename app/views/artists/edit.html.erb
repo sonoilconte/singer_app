@@ -47,13 +47,11 @@
       <%= form.label :media %>
     </h2>
     <p>
-      Paste html to embed media players (e.g. Sound Cloud, YouTube)
+      Paste html to embed media players (e.g. Sound Cloud, YouTube).
+      HTML is shown here, but actual embedded players will appear on your website.
     </p>
     <p>
       <%= form.text_area :media, cols: 100, rows: 20 %>
-      <div class="">
-        <%= @artist.media.html_safe %>
-      </div>
     </p>
 
     <h2>
@@ -61,6 +59,12 @@
     </h2>
     <p>
      <%= form.rich_text_area :management %>
+    </p>
+    <h2>
+      <%= form.label :management_url %>
+    </h2>
+    <p>
+      <%= form.text_field :management_url %>
     </p>
     <p>
       <%= form.submit 'Save' %>

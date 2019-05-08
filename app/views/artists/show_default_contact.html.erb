@@ -3,25 +3,27 @@
 
 
 <div class="row">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-frame contact">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-frame">
     <div class="page-header">Contact</div>
-    <% if @artist %>
-        <% if @artist.images %>
-          <% management_images = @artist.images.select { |image| image.category == 'management' } %>
-          <% if management_images[0] %>
-          <%= image_tag(management_images[0].file) %>
-          <% end %>
-        <% end %>
-      <% if @artist.management %>
-        <%= @artist.management %>
-      <% else %>
-        <%= p 'Artist management not found' %>
+    <div class="contact">
+      <% if @artist %>
+      <% if @artist.images %>
+      <% management_images = @artist.images.select { |image| image.category == 'management' } %>
+      <% if management_images[0] %>
+      <%= link_to image_tag(management_images[0].file), @artist.management_url %>
       <% end %>
-    <% else %>
-    <div class="page-header">
-      <%= p 'Artist not found' %>
+      <% end %>
+      <% if @artist.management %>
+      <%= @artist.management %>
+      <% else %>
+      <%= p 'Artist management not found' %>
+      <% end %>
+      <% else %>
+      <div class="page-header">
+        <%= p 'Artist not found' %>
+      </div>
+      <% end %>
     </div>
-    <% end %>
   </div>
 </div>
 
