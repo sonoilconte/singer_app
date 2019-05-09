@@ -4,7 +4,8 @@
     <span class="text-muted">Copyright © Meredith Hansen. All Rights Reserved.</span>
     <% if @current_user %>
     <% p @current_user %>
-    <%= link_to 'Admin Portal', "/artists/#{ENV['PRIMARY_USER_ID']}/edit" %>
+    <span>You're logged in. Visit the </span>
+    <%= link_to "Admin Portal", "/artists/#{ENV['PRIMARY_USER_ID']}/edit" %>
     <% end %>
   </div>
 </footer>
