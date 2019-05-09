@@ -1,34 +1,40 @@
 <%= render 'shared/admin_menu' %>
 
-<h1>Add a New Image</h1>
+<div class="admin-padding">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="admin-page-header">Add new image</div>
 
-<%= form_with scope: :image, local: true do |form| %>
+      <%= form_with scope: :image, local: true do |form| %>
 
-<p>
-  <%= form.label :artist_id %>
-  <%= form.text_field :artist_id %>
-</p>
-<p>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-</p>
-<p>
-  <%= form.label :category %>
-  <%= form.select(:category, options_for_select(@options)) %>
-</p>
-<p>
-  <%= form.label :order %>
-  <%= form.select(:order, options_for_select(@integer_range)) %>
-</p>
-<p>
-  <%= form.label :file %>
-  <img src="" id="image_preview">
-  <%= form.file_field :file, multiple: false, :onchange => 'load_file(event)' %>
-</p>
-
-
-<p>
-  <%= form.submit 'Save new image' %>
-</p>
+      <div style="display:none;">
+        <%= form.label :artist_id %>
+        <%= form.text_field :artist_id, value: params[:id] %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :category %>
+        <%= form.select(:category, options_for_select(@options)) %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :order %>
+        <%= form.select(:order, options_for_select(@integer_range)) %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :file, 'Image file' %>
+        <div class="admin-header-padding">
+          <img src="" id="image_preview">
+        </div>
+        <%= form.file_field :file, multiple: false, :onchange => 'load_file(event)' %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.submit 'Save new image' %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <% end %>

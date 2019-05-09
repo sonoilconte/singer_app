@@ -1,64 +1,63 @@
 <%= render 'shared/admin_menu' %>
 
-<h1>Edit Image Attributes</h1>
+<div class="admin-padding">
+  <div class="row">
+    <div class="col-xs-12">
+      <% if flash[:notice] %>
+      <div class="admin-flash"><%= flash[:notice] %></div>
+      <% end %>
+      <div class="admin-page-header">Edit image</div>
+      <% if @image %>
+        <%=
+        form_with scope: :image,
+        local: true,
+        url: "/artists/#{@image.artist.id}/images/#{@image.id}",
+        :html => { :method => :put } do |form|
+        %>
+        <div style="display:none">
+          <%= form.label :id %>
+          <%= @image.id %>
+        </div>
+        <div class="admin-header-padding">
+          <%= form.label :name %>
+          <%= form.text_field :name %>
+        </div>
+        <div class="admin-header-padding">
+          <%= form.label :category %>
+          <%= form.select(:category, options_for_select(@options, @image.category)) %>
+        </div>
+        <div class="admin-header-padding">
+          <%= form.label :order %>
+          <%= form.select(:order, options_for_select(@integer_range, @image.order))  %>
+        </div>
+        <div class="admin-header-padding">
+          <%= form.label :file, 'Image file' %>
+          <div class="admin-header-padding">
+            <%= image_tag(@image.file, id: 'image_preview') %>
+          </div>
+          <%= form.file_field :file, multiple: false, :onchange => 'load_file(event)' %>
+        </div>
+        <div class="admin-header-padding">
+          <%= form.submit 'Save Image' %>
+        </div>
+        <% end %>
 
-<% if flash[:notice] %>
-<h2><%= flash[:notice] %></h2>
-<% end %>
+        <div>
+          <%=
+          link_to 'Delete Image',
+          "/artists/#{@image.artist_id}/images/#{@image.id}",
+          data: { confirm: "Are you sure you want to delete image with filename #{@image.file.filename.to_s}" },
+          method: :delete,
+          class: 'admin-header-padding'
+          %>
+        </div>
 
-<% if @image %>
-  <%=
-  form_with scope: :image,
-    local: true,
-    url: "/artists/#{@image.artist.id}/images/#{@image.id}",
-    :html => { :method => :put } do |form|
-  %>
+        <% else %>
+        <div>
+          <%= p 'No image found' %>
+        </div>
+        <% end %>
+    </div>
+  </div>
 
-  <h2>
-    <%= form.label :id %>
-    <%= @image.id %>
-  </h2>
-  <h2>
-    <%= form.label :name %>
-  </h2>
-  <p>
-    <%= form.text_field :name %>
-  </p>
-  <h2>
-    <%= form.label :category %>
-  </h2>
-  <p>
-    <%= form.select(:category, options_for_select(@options, @image.category)) %>
-  </p>
-  <h2>
-    <%= form.label :order %>
-  </h2>
-  <p>
-    <%= form.select(:order, options_for_select(@integer_range, @image.order))  %>
-  </p>
-  <h2>
-    <%= form.label :file %>
-  </h2>
-  <p>
-    <%= image_tag(@image.file, id: 'image_preview') %>
-    <%= form.file_field :file, multiple: false, :onchange => 'load_file(event)' %>
-  </p>
-  <p>
-    <%= form.submit 'Save Image' %>
-  </p>
-  <% end %>
-
-  <p>
-    <%=
-    link_to 'Delete Image',
-    "/artists/#{@image.artist_id}/images/#{@image.id}",
-    data: { confirm: "Are you sure you want to delete image with filename #{@image.file.filename.to_s}" },
-    method: :delete
-    %>
-  </p>
-
-<% else %>
-<p>
-  <%= p 'No image found' %>
-</p>
-<% end %>
+</div>
