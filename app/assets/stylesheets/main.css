@@ -204,3 +204,9 @@ body {
   color: green;
   font-size: 1.2em;
 }
+
+.admin-navbar > li > a {
+  color: grey !important;
+  font-family: Verdana, sans-serif;
+  font-size: 1.2em;
+}

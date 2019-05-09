@@ -1,8 +1,4 @@
-<%= render 'shared/current_user' %>
 <%= render 'shared/admin_menu' %>
-
-
-
 
 <% if @artist %>
   <%= form_with scope: :artist, local: true, url: "/artists/#{@artist.id}", :html=> {:method=>:put} do |form| %>
