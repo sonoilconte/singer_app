@@ -210,3 +210,13 @@ body {
   font-family: Verdana, sans-serif;
   font-size: 1.2em;
 }
+
+.admin-section-header {
+  font-size: 1.1em;
+  text-decoration: underline;
+  margin: 10px 0;
+}
+
+.admin-header-padding {
+  padding: 10px 0;
+}

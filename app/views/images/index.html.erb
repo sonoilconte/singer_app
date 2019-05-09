@@ -1,64 +1,95 @@
 <%= render 'shared/admin_menu' %>
 
-<h1>Images</h1>
+<div class="admin-padding">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="admin-page-header">Images</div>
+      <div class="admin-header-padding">
+        <%= link_to 'Add new image', "/artists/#{params[:id]}/images/new" %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <%=
-  link_to 'Add new image',
-  "/artists/#{params[:id]}/images/new"
-  %>
-</p>
 
-<% if @images && @images.length > 0  %>
+  <div class="row">
+    <div class="col-sm-2 admin-section-header">
+      Name
+    </div>
+    <div class="col-sm-2 admin-section-header">
+      Category
+    </div>
+    <div class="col-sm-2 admin-section-header">
+      Order
+    </div>
+    <div class="col-sm-3 admin-section-header">
+      Preview
+    </div>
+    <div class="col-sm-2 admin-section-header">
+      Actions
+    </div>
+  </div>
 
-<% @images.each do |image| %>
-<p>ID: <%= image.id %></p>
-<p>Name: <%= image.name %></p>
-<p>Category: <%= image.category %></p>
-<p>Order: <%= image.order %></p>
-<p>
+  <% if @images && @images.length > 0  %>
 
-  <% if image.file.attachment %>
-  <%= image_tag(image.file) %>
-  <% else %>
-  <%= p 'No image file attachment found' %>
+  <% @images.each do |image| %>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <%= image.name %>
+    </div>
+    <div class="col-sm-2">
+      <%= image.category %>
+    </div>
+    <div class="col-sm-2">
+      <%= image.order %>
+    </div>
+    <div class="col-sm-3">
+      <% if image.file.attachment %>
+      <%= image_tag(image.file, style: 'max-width: 100%; max-height: 100px') %>
+      <% else %>
+      <%= p 'No image file attachment found' %>
+      <% end %>
+    </div>
+    <div class="col-sm-2">
+      <p>
+        <%=
+        link_to 'View image',
+        "/artists/#{image.artist_id}/images/#{image.id}"
+        %>
+      </p>
+      <p>
+        <%=
+        link_to 'Edit image',
+        "/artists/#{image.artist_id}/images/#{image.id}/edit"
+        %>
+      </p>
+
+      <%
+      if image.file && image.file.attachment
+      filename_string = image.file.filename.to_s
+      else
+      filename_string = 'unknown'
+      end
+      %>
+
+
+      <p>
+        <%=
+        link_to 'Delete Image',
+        "/artists/#{image.artist_id}/images/#{image.id}",
+        data: { confirm: "Are you sure you want to delete image with filename #{filename_string}" },
+        method: :delete
+        %>
+      </p>
+    </div>
+  </div>
+  <hr>
   <% end %>
 
-  <%
-  if image.file && image.file.attachment
-    filename_string = image.file.filename.to_s
-  else
-    filename_string = 'unknown'
-  end
-  %>
+  <% else %>
+  <p>
+    <%= p "No images found" %>
+  </p>
+  <% end %>
 
-  <p>
-    <%=
-    link_to 'View image',
-    "/artists/#{image.artist_id}/images/#{image.id}"
-    %>
-  </p>
-  <p>
-  <%=
-    link_to 'Edit image',
-    "/artists/#{image.artist_id}/images/#{image.id}/edit"
-  %>
-  </p>
-  <p>
-    <%=
-    link_to 'Delete Image',
-    "/artists/#{image.artist_id}/images/#{image.id}",
-    data: { confirm: "Are you sure you want to delete image with filename #{filename_string}" },
-    method: :delete
-    %>
-  </p>
-
-</p>
-<hr>
-<% end %>
-
-<% else %>
-  <p>
-  <%= p "No images found" %>
-  </p>
-<% end %>
+</div>
