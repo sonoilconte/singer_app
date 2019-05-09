@@ -1,40 +1,28 @@
 <%= render 'shared/admin_menu' %>
 
 <% if @image %>
-<h1>
-  <% if @image.name %>
-  <%= @image.name %>
-  <% else %>
-  <%= p 'image name not found' %>
-  <% end %>
-</h1>
 
-<h2>
-  Category
-</h2>
+<div class="admin-padding">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="admin-label">Image name: <%= @image.name %></div>
+      <div class="admin-label">Category: <%= @image.category %></div>
+      <div class="admin-label">Order: <%= @image.order %></div>
+      <div>
+        <% if @image.file.attachment %>
+        <%= image_tag @image.file, id: 'image_preview' %>
+        <% else %>
+        <%= p 'Image file not found' %>
+        <% end %>
+      </div>
 
-<p>
-  <% if @image.category %>
-  <%= @image.category %>
-  <% else %>
-  <%= p 'image bio not found' %>
-  <% end %>
-</p>
+      <div class="admin-button">
+        <%= link_to 'Edit image', "/artists/#{@image.artist_id}/images/#{@image.id}/edit" %>
+      </div>
 
-<p>
-  <% if @image.file.attachment %>
-  <%= image_tag(@image.file) %>
-  <% else %>
-  <%= p 'Image file not found' %>
-  <% end %>
-</p>
-
-<p>
-  <%= link_to 'Edit image', "/artists/#{@image.artist_id}/images/#{@image.id}/edit" %>
-</p>
-
-<% else %>
-<h1>
-  <%= p 'image not found'%>
-</h1>
-<% end %>
+      <% else %>
+      <div><%= p 'Image not found'%></div>
+      <% end %>
+    </div>
+  </div>
+</div>
