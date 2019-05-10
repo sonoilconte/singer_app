@@ -1,66 +1,97 @@
 <%= render 'shared/admin_menu' %>
 
-<h1>Events</h1>
+<div class="admin-padding">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="admin-page-header">
+        Events
+      </div>
+      <div class="admin-header-padding">
+        <%= link_to 'Add new event', "/artists/#{params[:id]}/events/new" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-1 admin-section-header">
+      Time
+    </div>
+    <div class="col-sm-1 admin-section-header">
+      Title
+    </div>
+    <div class="col-sm-2 admin-section-header">
+      Description
+    </div>
+    <div class="col-sm-3 admin-section-header">
+      URL
+    </div>
+    <div class="col-sm-1 admin-section-header">
+      Archived
+    </div>
+    <div class="col-sm-2 admin-section-header">
+      Image
+    </div>
+    <div class="col-sm-2 admin-section-header">
+      Actions
+    </div>
+  </div>
 
-<p>
-  <%=
-  link_to 'Add new event',
-  "/artists/#{params[:id]}/events/new"
-  %>
-</p>
+  <% if @events && @events.length > 0  %>
 
-<% if @events && @events.length > 0  %>
-
-<% @events.each do |event| %>
-<p>ID: <%= event.id %></p>
-<p>Title: <%= event.title %></p>
-<p>Description: <%= event.description %></p>
-<p>URL: <%= event.url %></p>
-<p>Time: <%= event.datetime.strftime('%B %e, %Y at %l:%M%P') %></p>
-<p>Archived: <%= event.archived %></p>
-<p>
-
-  <% if event.image.attachment %>
-  <%= image_tag(event.image) %>
-  <% else %>
-  <%= p 'No event image attachment found' %>
+  <% @events.each do |event| %>
+    <%
+    if event.title
+      event_title = event.title
+    else
+      event_title = 'unknown'
+    end
+    %>
+  <div class="row">
+    <div class="col-sm-1">
+      <%= event.datetime.strftime('%B %e, %Y at %l:%M%P') %>
+    </div>
+    <div class="col-sm-1">
+      <%= event.title %>
+    </div>
+    <div class="col-sm-2">
+      <%= event.description %>
+    </div>
+    <div class="col-sm-3 admin-overflow">
+      <%= event.url %>
+    </div>
+    <div class="col-sm-1">
+      <%= check_box_tag 'archived', 'yes', event.archived, disabled: true %>
+    </div>
+    <div class="col-sm-2">
+      <% if event.image.attachment %>
+      <%= image_tag(event.image, class: 'admin-index-image') %>
+      <% else %>
+      <%= p 'No event image attachment found' %>
+      <% end %>
+    </div>
+    <div class="col-sm-2">
+      <div class="admin-element-padding">
+        <%= link_to 'View event', "/artists/#{event.artist_id}/events/#{event.id}" %>
+      </div>
+      <div class="admin-element-padding">
+        <%= link_to 'Edit event', "/artists/#{event.artist_id}/events/#{event.id}/edit" %>
+      </div>
+      <div class="admin-element-padding">
+        <%=
+        link_to 'Delete event',
+        "/artists/#{event.artist_id}/events/#{event.id}",
+        data: { confirm: "Are you sure you want to delete the event #{event_title}?" },
+        method: :delete
+        %>
+      </div>
+    </div>
+  </div>
+  <hr>
   <% end %>
 
-  <%
-  if event.title
-    event_title = event.title
-  else
-    event_title = 'unknown'
-  end
-  %>
+  <% else %>
+  <p>
+    <%= p "No events found" %>
+  </p>
+  <% end %>
 
-  <p>
-    <%=
-    link_to 'View event',
-    "/artists/#{event.artist_id}/events/#{event.id}"
-    %>
-  </p>
-  <p>
-  <%=
-    link_to 'Edit event',
-    "/artists/#{event.artist_id}/events/#{event.id}/edit"
-  %>
-  </p>
-  <p>
-    <%=
-    link_to 'Delete event',
-    "/artists/#{event.artist_id}/events/#{event.id}",
-    data: { confirm: "Are you sure you want to delete the event #{event_title}?" },
-    method: :delete
-    %>
-  </p>
-
-</p>
-<hr>
-<% end %>
-
-<% else %>
-  <p>
-  <%= p "No events found" %>
-  </p>
-<% end %>
+</div>
