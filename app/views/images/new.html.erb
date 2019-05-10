@@ -26,7 +26,7 @@
       <div class="admin-header-padding">
         <%= form.label :file, 'Image file' %>
         <div class="admin-header-padding">
-          <img src="" id="image_preview">
+          <img src="" id="image_preview" class="admin-show-image">
         </div>
         <%= form.file_field :file, multiple: false, :onchange => 'load_file(event)' %>
       </div>

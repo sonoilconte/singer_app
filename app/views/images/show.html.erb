@@ -10,7 +10,7 @@
       <div class="admin-label">Order: <%= @image.order %></div>
       <div>
         <% if @image.file.attachment %>
-        <%= image_tag @image.file, id: 'image_preview' %>
+        <%= image_tag @image.file, id: 'image_preview', class: 'admin-show-image' %>
         <% else %>
         <%= p 'Image file not found' %>
         <% end %>
