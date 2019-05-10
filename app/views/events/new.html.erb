@@ -1,41 +1,50 @@
 <%= render 'shared/admin_menu' %>
 
-<h1>Add a New event</h1>
+<div class="admin-padding">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="admin-page-header">Add new event</div>
 
-<%= form_with scope: :event, local: true do |form| %>
+      <%= form_with scope: :event, local: true do |form| %>
 
-<p>
-  <%= form.label :artist_id %>
-  <%= form.text_field :artist_id %>
-</p>
-<p>
-  <%= form.label :title %>
-  <%= form.text_field :title, :required => true %>
-</p>
-<p>
-  <%= form.label :datetime %>
-  <%= form.text_field :datetime, id: 'flatpickr', :value => DateTime.now %>
-</p>
-<p>
-  <%= form.label :description %>
-  <%= form.rich_text_area :description %>
-</p>
-<p>
-  <%= form.label :url %>
-  <%= form.text_field :url %>
-</p>
-<p>
-  <%= form.label :archived %>
-  <%= form.check_box :archived %>
-</p>
-<p>
-  <%= form.label :image %>
-  <img src="" id="image_preview">
-  <%= form.file_field :image, multiple: false, :onchange => 'load_file(event)' %>
-</p>
+      <div style="display:none;">
+        <%= form.label :artist_id %>
+        <%= form.text_field :artist_id, value: params[:id] %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :title %>
+        <%= form.text_field :title, :required => true %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :datetime %>
+        <% datetime = DateTime.now() %>
+        <%= form.text_field :datetime, id: 'flatpickr', :datetime => datetime %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :description %>
+        <%= form.rich_text_area :description %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :url %>
+        <%= form.text_field :url %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :archived %>
+        <%= form.check_box :archived %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :image %>
+        <div class="admin-header-padding">
+          <img src="" id="image_preview">
+        </div>
+        <%= form.file_field :image, multiple: false, :onchange => 'load_file(event)' %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.submit 'Add new event' %>
+      </div>
 
-<p>
-  <%= form.submit 'Add new event' %>
-</p>
+      <% end %>
 
-<% end %>
+    </div>
+  </div>
+</div>
