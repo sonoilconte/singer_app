@@ -233,3 +233,7 @@ body {
 .admin-overflow {
   overflow: hidden;
 }
+
+.admin-show-image {
+  max-width: 30%;
+}

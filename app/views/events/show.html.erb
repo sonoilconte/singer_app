@@ -1,45 +1,38 @@
 <%= render 'shared/admin_menu' %>
 
-<% if @event %>
-<h1>
-  <% if @event.title %>
-  <%= @event.title %>
-  <% else %>
-  <%= p 'Event title not found' %>
-  <% end %>
-</h1>
-
-<h2>
-  Date
-</h2>
-
-<p>
-  <% if @event.datetime %>
-  <%= @event.datetime.strftime('%B %e, %Y at %l:%M%P') %>
-  <% else %>
-  <%= p 'Event date/time not found' %>
-  <% end %>
-</p>
-<p>
-  Archived:
-  <%= @event.archived %>
-</p>
-
-<p><%= @event.description %></p>
-<p>
-  <% if @event.image.attachment %>
-  <%= link_to image_tag(@event.image), @event.url %>
-  <% else %>
-  <%= p 'Event image file not found' %>
-  <% end %>
-</p>
-
-<p>
-  <%= link_to 'Edit Event', "/artists/#{@event.artist_id}/events/#{@event.id}/edit" %>
-</p>
-
-<% else %>
-<h1>
-  <%= p 'Event not found'%>
-</h1>
-<% end %>
+<div class="admin-padding">
+  <div class="row">
+    <div class="col-xs-12">
+      <% if @event %>
+      <div class="admin-label">Event title: <%= @event.title %></div>
+      <div class="admin-label">
+        Event time:
+        <% if @event.datetime %>
+        <%= @event.datetime.strftime('%B %e, %Y at %l:%M%P') %>
+        <% else %>
+        <%= p 'Event date/time not found' %>
+        <% end %>
+      </div>
+      <div class="admin-label">
+        Archived: <%= check_box_tag 'archived', 'yes', @event.archived, disabled: true %>
+      </div>
+      <div class="admin-label">Description: <%= @event.description %></div>
+      <div class="">
+        <% if @event.image.attachment %>
+        <%= image_tag(@event.image, class: 'admin-show-image') %>
+        <% else %>
+        <%= p 'Event image file not found' %>
+        <% end %>
+      </div>
+      <div class="admin-label">URL: <%= @event.url %></div>
+      <div>
+        <%= link_to 'Edit Event', "/artists/#{@event.artist_id}/events/#{@event.id}/edit" %>
+      </div>
+      <% else %>
+      <div>
+        <%= p 'Event not found'%>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

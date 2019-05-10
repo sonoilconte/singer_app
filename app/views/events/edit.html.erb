@@ -1,83 +1,74 @@
 <%= render 'shared/admin_menu' %>
 
-<h1>Edit event Attributes</h1>
-
-<% if flash[:notice] %>
-<h2><%= flash[:notice] %></h2>
-<% end %>
-
-<% if @event %>
-  <%=
-  form_with scope: :event,
-    local: true,
-    url: "/artists/#{@event.artist.id}/events/#{@event.id}",
-    :html => { :method => :put } do |form|
-  %>
-
-  <h2>
-    <%= form.label :id %>
-    <%= @event.id %>
-  </h2>
-  <h2>
-    <%= form.label :title %>
-  </h2>
-  <p>
-    <%= form.text_field :title, :required => true %>
-  </p>
-  <h2>
-    <%= form.label :datetime %>
-  </h2>
-  <p>
-    <%= form.text_field :datetime, id: 'flatpickr', :datetime => @event.datetime %>
-  </p>
-  <h2>
-    <%= form.label :description %>
-  </h2>
-  <p>
-    <%= form.rich_text_area :description %>
-  </p>
-  <h2>
-    <%= form.label :url %>
-  </h2>
-  <p>
-    <%= form.text_field :url %>
-  </p>
-  <h2>
-    <%= form.label :archived %>
-  </h2>
-  <p>
-    <%= form.check_box :archived %>
-  </p>
-  <h2>
-    <%= form.label :image %>
-  </h2>
-  <p>
-    <%
-      if @event.image.attachment
-        image = @event.image
-      else
+<div class="admin-padding">
+  <div class="row">
+    <div class="col-xs-12">
+      <% if flash[:notice] %>
+      <div class="admin-flash"><%= flash[:notice] %></div>
+      <% end %>
+      <div class="admin-page-header">Edit event</div>
+      <% if @event %>
+      <%=
+      form_with scope: :event,
+      local: true,
+      url: "/artists/#{@event.artist.id}/events/#{@event.id}",
+      :html => { :method => :put } do |form|
+      %>
+      <div style="display:none">
+        <%= form.label :id %>
+        <%= @event.id %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: 'admin-input', :required => true  %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :datetime %>
+        <%= form.text_field :datetime, id: 'flatpickr', :datetime => @event.datetime %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :description %>
+        <%= form.rich_text_area :description %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :url %>
+        <%= form.text_field :url, class: 'admin-input' %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :archived %>
+        <%= form.check_box :archived %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.label :image %>
+        <%
+        if @event.image.attachment
+          image = @event.image
+        else
         image = ''
-      end
-    %>
-    <%= link_to image_tag(image, id: 'image_preview'), @event.url %>
-    <%= form.file_field :image, multiple: false, :onchange => 'load_file(event)' %>
-  </p>
-  <p>
-    <%= form.submit 'Save event' %>
-  </p>
-  <% end %>
-
-  <p>
-    <%=
-    link_to 'Delete Event',
-    "/artists/#{@event.artist_id}/events/#{@event.id}",
-    data: { confirm: "Are you sure you want to delete the event #{@event.title}?" },
-    method: :delete
-    %>
-  </p>
-
-<% else %>
-<p>
-  <%= p 'No event found' %>
-</p>
-<% end %>
+        end
+        %>
+        <div class="admin-header-padding">
+          <%= image_tag(image, id: 'image_preview', class: 'admin-show-image') %>
+        </div>
+        <%= form.file_field :image, multiple: false, :onchange => 'load_file(event)' %>
+      </div>
+      <div class="admin-header-padding">
+        <%= form.submit 'Save event' %>
+      </div>
+      <% end %>
+      <div class="admin-header-padding">
+        <%=
+        link_to 'Delete Event',
+        "/artists/#{@event.artist_id}/events/#{@event.id}",
+        data: { confirm: "Are you sure you want to delete the event #{@event.title}?" },
+        method: :delete
+        %>
+      </div>
+      <% else %>
+      <div class="admin-header-padding">
+        <%= p 'No event found' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

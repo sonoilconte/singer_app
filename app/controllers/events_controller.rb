@@ -32,7 +32,7 @@ class EventsController < ApplicationController
     if event.update_attributes(event_params)
       flash[:notice] = "Event info saved"
     end
-    redirect_to "/artists/#{params[:id]}/events/#{params[:event_id]}"
+    redirect_to "/artists/#{params[:id]}/events/#{params[:event_id]}/edit"
   end
 
   def delete
