@@ -220,3 +220,16 @@ body {
 .admin-header-padding {
   padding: 10px 0;
 }
+
+.admin-element-padding {
+  padding-bottom: 10px;
+}
+
+.admin-index-image {
+  max-width: 100%;
+  max-height: 100px;
+}
+
+.admin-overflow {
+  overflow: hidden;
+}
