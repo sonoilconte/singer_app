@@ -28,7 +28,7 @@
     <%= form.label :datetime %>
   </h2>
   <p>
-    <%= form.text_field :datetime, id: 'flatpickr' %>
+    <%= form.text_field :datetime, id: 'flatpickr', :datetime => @event.datetime %>
   </p>
   <h2>
     <%= form.label :description %>
