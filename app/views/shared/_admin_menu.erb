@@ -15,9 +15,9 @@
        <% if !@current_user %>
        <%= nav_link "Log in", "/login" %>
        <% else %>
-       <%= nav_link "Edit Info", "/artists/#{ENV['PRIMARY_USER_ID']}/edit" %>
-       <%= nav_link "Edit Images", "/artists/#{ENV['PRIMARY_USER_ID']}/images" %>
-       <%= nav_link "Edit Events", "/artists/#{ENV['PRIMARY_USER_ID']}/events" %>
+       <%= nav_link "Edit Info", "/artists/#{ENV['PRIMARY_ARTIST_ID']}/edit" %>
+       <%= nav_link "Edit Images", "/artists/#{ENV['PRIMARY_ARTIST_ID']}/images" %>
+       <%= nav_link "Edit Events", "/artists/#{ENV['PRIMARY_ARTIST_ID']}/events" %>
        <% end %>
      </ul>
      <ul class="nav navbar-nav navbar-right admin-navbar">
