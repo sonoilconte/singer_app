@@ -12,9 +12,10 @@ gem 'flatpickr_rails'
 gem 'image_processing', '~> 1.2'
 # hirb for easy table viewing in terminal
 gem 'hirb', '~>0.7.0'
-# Use sqlite3 as the database for Active Record
-# Rails 6.0.0.beta3 does not like sqlite3 1.4
-gem 'sqlite3', '~> 1.3.6'
+
+# Use Postgresql for databse
+gem 'pg'
+
 gem 'nokogiri', '~> 1.8'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
