@@ -23,7 +23,11 @@
         <%= form.label :resume, class: 'admin-label' %>
       </div>
       <div class="">
-        <%= image_tag(@artist.resume.preview(resize: "400x400>")) %>
+        <%=
+        @artist.resume && @artist.resume.attachment ?
+          image_tag(@artist.resume.preview(resize: "400x400>")) :
+          'No resume found'
+        %>
       </div>
       <div class="">
         <%= form.file_field :resume, multiple: false %>
