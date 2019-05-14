@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  # Lockup gem for managing access to demo site
+  mount Lockup::Engine, at: '/lockup'
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # Routes for the default artist/user for the instance of the application
