@@ -15,6 +15,9 @@ gem 'hirb', '~>0.7.0'
 # Use Postgresql for databse
 gem 'pg'
 
+# Lockup gem for managing access to demo site
+gem 'lockup'
+
 gem 'nokogiri', '~> 1.8'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
