@@ -4,7 +4,9 @@
   "dependencies": {
     "@rails/actiontext": "^6.0.0-beta3",
     "@rails/webpacker": "^4.0.2",
-    "trix": "^1.0.0"
+    "tar": "^4.4.8",
+    "trix": "^1.0.0",
+    "typescript": "^3.4.5"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.3.1"
