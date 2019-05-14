@@ -40,8 +40,9 @@ gem 'sprockets', '~> 3.7.2'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
+
 # Use Poppler for PDF previews
-gem 'poppler', '~> 3.0', '>= 3.0.7'
+# gem 'poppler', '~> 3.0', '>= 3.0.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
