@@ -1,8 +1,10 @@
-<% logo = @artist.images.select { |image| image.category == 'logo' }[0].file %>
 <div id="logo" class="row">
   <div class="col-xs-12 center">
-    <!-- <h1>Meredith Hansen</h1> -->
-    <!-- <img src="./hansen.png" alt="Meredith Hansen, Soprano"> -->
-    <%= image_tag(logo) %>
+    <% logo_image = @artist.images.find { |image| image.category == 'logo' } %>
+    <% if logo_image && logo_image.file %>
+      <%= image_tag(logo_image.file) %>
+    <% else %>
+      Logo image not found
+    <% end %>
   </div>
 </div>

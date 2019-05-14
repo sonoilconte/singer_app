@@ -3,35 +3,6 @@
 
 <% if @artist %>
 
-<%
-# use sorted @events for the artist
-# create a new hash that will store the events by season
-# loop through events
-# define season as year minus 4 months so Jan 1 - 4 is Sep 1 to Aug 31
-# determine season of the event
-  # date + 4 months gives you a year
-  # then season is 'year -1 to year' season
-# stick event in appropriate season in hash
-# print the hash by season with the events in ascending order
-
-schedule = Hash.new()
-@events.each do | event |
-
-  # p event.datetime
-  # p year = event.datetime.year
-  ending_year = event.datetime.advance(:months => 4).year
-  p season = "#{ending_year - 1}-#{ending_year}"
-
-  if schedule[season]
-    schedule[season] << event
-  else
-    schedule[season] = []
-    schedule[season] << event
-  end
-end
-
-%>
-
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-frame">
     <div class="page-header">
@@ -40,37 +11,74 @@ end
   </div>
 </div>
 
-<% schedule.each do |season, event_list | %>
-
-<div class="row">
-  <div class="col-xs-12 section-header">
-    <hr/>
-    <%= p season %>
-    <hr/>
+  <% if @artist.events.length == 0 %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-frame">
+      <%= p 'No events found' %>
+    </div>
   </div>
-</div>
+  <% else %>
+    <%
+    # use sorted @events for the artist
+    # create a new hash that will store the events by season
+    # loop through events
+    # define season as year minus 4 months so Jan 1 - 4 is Sep 1 to Aug 31
+    # determine season of the event
+    # date + 4 months gives you a year
+    # then season is 'year -1 to year' season
+    # stick event in appropriate season in hash
+    # print the hash by season with the events in ascending order
 
-  <% event_list.each do | event | %>
+    schedule = Hash.new()
+    @events.each do | event |
 
-<div class="row">
-  <div class="col-sm-6 text-frame">
-    <div class="schedule-image-frame">
-      <% if event.image.attachment %>
-      <%= link_to image_tag(event.image, class: 'schedule-image'), event.url %>
+      # p event.datetime
+      # p year = event.datetime.year
+      ending_year = event.datetime.advance(:months => 4).year
+      p season = "#{ending_year - 1}-#{ending_year}"
+
+      if schedule[season]
+        schedule[season] << event
+      else
+        schedule[season] = []
+        schedule[season] << event
+      end
+
+    end
+
+    %>
+
+    <% schedule.each do |season, event_list | %>
+
+    <div class="row">
+      <div class="col-xs-12 section-header">
+        <hr/>
+        <%= p season %>
+        <hr/>
+      </div>
+    </div>
+
+      <% event_list.each do | event | %>
+
+      <div class="row">
+        <div class="col-sm-6 text-frame">
+          <div class="schedule-image-frame">
+            <% if event.image.attachment %>
+            <%= link_to image_tag(event.image, class: 'schedule-image'), event.url %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-6 text-frame">
+          <div class="schedule-text-frame">
+            <%= p event.title %><br>
+            <%= p event.datetime.strftime('%B %e, %Y at %l:%M%P') %><br/>
+            <%= p event.description %>
+          </div>
+        </div>
+      </div>
       <% end %>
-    </div>
-  </div>
-  <div class="col-sm-6 text-frame">
-    <div class="schedule-text-frame">
-      <%= p event.title %><br>
-      <%= p event.datetime.strftime('%B %e, %Y at %l:%M%P') %><br/>
-      <%= p event.description %>
-    </div>
-  </div>
-</div>
+    <% end %>
   <% end %>
-
-<% end %>
 
 <% else %>
 <div class="page-header">
