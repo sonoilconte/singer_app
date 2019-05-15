@@ -15,6 +15,10 @@ gem 'hirb', '~>0.7.0'
 # Use Postgresql for databse
 gem 'pg'
 
+# Use AWS S3 SDK for accessing S3 storage account for images and other files
+# Active Storage will access in blob storage
+gem "aws-sdk-s3", require: false
+
 # Lockup gem for managing access to demo site
 gem 'lockup'
 
