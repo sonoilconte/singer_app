@@ -18,7 +18,7 @@ class EventsController < ApplicationController
   def create
     redirect_unauthorized_user(current_user, params[:id])
     event = Event.create!(event_params)
-    redirect_to "/artists/#{params[:id]}/events/#{event.id}"
+    redirect_to "/artists/#{params[:id]}/events"
   end
 
   def edit
@@ -38,7 +38,7 @@ class EventsController < ApplicationController
   def delete
     redirect_unauthorized_user(current_user, params[:id])
     Event.delete(params[:event_id])
-    redirect_to "/artists/#{params[:id]}/events/"
+    redirect_to "/artists/#{params[:id]}/events"
   end
 
   private
