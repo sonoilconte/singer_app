@@ -107,6 +107,10 @@ body {
   text-align: center;
 }
 
+.event-title {
+  font-size: 1.2em;
+}
+
 .schedule-image-frame {
   text-align: right;
   /*border: 1px solid;*/
