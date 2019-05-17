@@ -19,46 +19,47 @@
   </div>
   <% else %>
     <%
-    # use sorted @events for the artist
+    # use sorted @events for the artist (from controller)
     # create a new hash that will store the events by season
-    # loop through events
+    # loop through all events
     # define season as year minus 4 months so Jan 1 - 4 is Sep 1 to Aug 31
     # determine season of the event
     # date + 4 months gives you a year
-    # then season is 'year -1 to year' season
+    # then season is 'year -1 to year' season e.g. '2018-2019'
     # stick event in appropriate season in hash
-    # print the hash by season with the events in ascending order
+    # convert hash to array such that it can be reverse sorted (Most recent season should appear first)
+    # iterate through the array to inject the events grouped by season
 
     schedule = Hash.new()
     @events.each do | event |
-
-      # p event.datetime
-      # p year = event.datetime.year
       ending_year = event.datetime.advance(:months => 4).year
-      p season = "#{ending_year - 1}-#{ending_year}"
-
+      season = "#{ending_year - 1}-#{ending_year}"
       if schedule[season]
         schedule[season] << event
       else
         schedule[season] = []
         schedule[season] << event
       end
-
     end
 
+    schedule_array = []
+    schedule.each do |season, season_events|
+       schedule_array.push([season, season_events])
+    end
+    schedule_array.sort! { |a,b| b[0] <=> a[0]}
     %>
 
-    <% schedule.each do |season, event_list | %>
+    <% schedule_array.each do |season| %>
 
     <div class="row">
       <div class="col-xs-12 section-header">
         <hr/>
-        <%= p season %>
+        <%= p season[0] %>
         <hr/>
       </div>
     </div>
 
-      <% event_list.each do | event | %>
+      <% season[1].each do | event | %>
 
       <div class="row">
         <div class="col-sm-6 text-frame">
