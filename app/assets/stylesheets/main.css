@@ -1,6 +1,7 @@
 body {
   /*margin: 20px;*/
   background-color: #652B80;
+  font-size: 14px;
 }
 
 #main {
@@ -83,6 +84,12 @@ body {
   padding-bottom: 15px;
 }
 
+.home-bio {
+  overflow: hidden;
+  line-height: 1.5em;
+}
+
+
 .page-header {
   font-family: Georgia, serif;
   font-size: 2em;
@@ -148,6 +155,7 @@ body {
 
 .media iframe {
   padding: 20px 0;
+  max-width: 100%;
 }
 
 /* Contact view */
