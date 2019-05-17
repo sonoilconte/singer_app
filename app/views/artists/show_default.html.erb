@@ -9,21 +9,23 @@
         image.category == 'featured'
         }[0]
         %>
-        <%= image_tag(image.file.variant(resize_to_limit: [800, 800]), alt: 'Meredith Hansen Headshot', class: 'featured-image') %>
+        <%= image_tag(image.file.variant(resize_to_limit: [800, 800]), alt: @artist.name, class: 'featured-image') %>
         <% else %>
         <%= p 'No featured image found' %>
         <% end %>
     </div>
   </div>
   <div class="col-xs-6 col-md-5 text-frame">
-    <div id="home_bio">
+    <div class="home-bio">
       <% if @artist.biography %>
       <%= @artist.biography %>
       <% else %>
       <%= p 'Artist bio not found' %>
       <% end %>
     </div>
-    <a href="/biography">Click to read <%= @artist.name %>'s full biography</a>
+    <div style="padding-top:10px;">
+      <a href="/biography">Click to read <%= @artist.name %>'s full biography</a>
+    </div>
   </div>
 </div>
 
@@ -36,3 +38,12 @@
 <% end %>
 
 <%= render 'shared/footer' %>
+
+<script type="text/javascript">
+$('turbolinks:load').ready(function() {
+  var divHeight = $('.featured-image-frame').height();
+  // 14px is 1em, each line is 1.5em
+  var numLines = Math.floor(divHeight / (14 * 1.5));
+  $('.home-bio').css('height', numLines * 14 * 1.5 + 'px');
+});
+</script>

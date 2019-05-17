@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require resize_height.js
 //= require flatpickr
 //= require flatpickr_selector
 //= require_tree .
