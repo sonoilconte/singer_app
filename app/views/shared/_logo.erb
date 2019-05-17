@@ -2,8 +2,9 @@
   <div class="col-xs-12 center">
     <% logo_image = @artist.images.find { |image| image.category == 'logo' } %>
     <% if logo_image && logo_image.file %>
-      <%= image_tag(logo_image.file) %>
+      <%= link_to image_tag(logo_image.file), '/' %>
     <% else %>
+      <%= link_to "#{@artist.name} Home" %>
       Logo image not found
     <% end %>
   </div>
