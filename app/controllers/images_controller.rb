@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
 
   def index
     redirect_unauthorized_user(current_user, params[:id])
-    @images = Image.where(artist_id: params[:id])
+    @images = Image.where(artist_id: params[:id]).sort_by{ |image| image.category }
   end
 
   def show
@@ -51,7 +51,7 @@ class ImagesController < ApplicationController
   end
 
   def category_options
-    @options = ['logo', 'featured', 'gallery', 'management']
+    @options = ['gallery','featured','logo','management']
   end
 
   def order_integer_range
