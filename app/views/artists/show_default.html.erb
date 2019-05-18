@@ -41,7 +41,8 @@
 
 <script type="text/javascript">
 $('turbolinks:load').ready(function() {
-  var divHeight = $('.featured-image-frame').height();
+  var divHeight = $('.featured-image').height();
+  divHeight = divHeight > 200 ? divHeight : 520;
   // 14px is 1em, each line is 1.5em
   var numLines = Math.floor(divHeight / (14 * 1.5));
   $('.home-bio').css('height', numLines * 14 * 1.5 + 'px');
