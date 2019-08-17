@@ -1,7 +1,7 @@
 <%= render "shared/menu" %>
 
 <% if flash[:notice] %>
-  <div class="notice">
+  <div class="notice admin-padding">
     <%= flash[:notice] %>
   </div>
 <% end %>
@@ -9,7 +9,6 @@
 <h1>Log in</h1>
 
 <%= form_for @user, url: '/login', method: 'post' do |f| %>
-
   <p>
     Email
     <%= f.email_field :email %>
@@ -21,6 +20,4 @@
   <p>
     <%= f.submit 'Log in' %>
   </p>
-
-
 <% end %>

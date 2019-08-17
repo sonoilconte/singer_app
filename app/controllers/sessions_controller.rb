@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       redirect_to "/artists/#{ENV['PRIMARY_ARTIST_ID']}/edit"
     else
       p 'access denied'
+      flash[:notice] = 'Your email and/or password are not correct'
       redirect_to '/login'
     end
   end

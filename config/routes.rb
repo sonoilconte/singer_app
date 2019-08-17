@@ -2,20 +2,18 @@ Rails.application.routes.draw do
 
   # Lockup gem for managing access to demo site
   mount Lockup::Engine, at: '/lockup'
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # Routes for the default artist/user for the instance of the application
   # visible to the end user
-  # TODO: Can probably make this and the controller DRYer by using a param
-  # after the / and then feeding it to the correct view in the controller using that param
+  # Sessions
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
   get '/' => 'artists#show_default'
-  get '/biography' => 'artists#show_default_bio'
-  get '/schedule' => 'artists#show_default_schedule'
-  get '/resume' => 'artists#show_default_resume'
-  get '/listen' => 'artists#show_default_media'
-  get '/gallery' => 'artists#show_default_images'
-  get '/contact' => 'artists#show_default_contact'
+  get '/:path' => 'artists#show_default'
 
   # Routes for administrator managing content
   get '/artists/new' => 'artists#new'
@@ -46,9 +44,4 @@ Rails.application.routes.draw do
 
   # Welcome
   get '/welcome' => 'welcome#index'
-
-  # Sessions
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
 end
