@@ -53,11 +53,13 @@ class ArtistsController < ApplicationController
   def show_default
     current_user
     default_artist
-  end
-
-  def show_default_bio
-    current_user
-    default_artist
+    if (!params[:path])
+      render "default_home"
+    elsif (params[:path] == "schedule")
+      show_default_schedule
+    else
+      render "default_#{params[:path]}"
+    end
   end
 
   def show_default_schedule
@@ -66,26 +68,7 @@ class ArtistsController < ApplicationController
     @events = Event.where(artist_id: artist_id)
       .reject { |event | event.archived }
       .sort_by { |event| event.datetime }
-  end
-
-  def show_default_resume
-    current_user
-    default_artist
-  end
-
-  def show_default_media
-    current_user
-    default_artist
-  end
-
-  def show_default_images
-    current_user
-    default_artist
-  end
-
-  def show_default_contact
-    current_user
-    default_artist
+    render "default_schedule"
   end
 
   private
