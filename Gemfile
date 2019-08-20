@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
 
 gem 'webpacker', github: 'rails/webpacker'
@@ -17,7 +16,7 @@ gem 'image_processing', '~> 1.2'
 gem 'hirb', '~>0.7.0'
 
 # Use Postgresql for databse
-gem 'pg'
+gem 'pg', '~> 1.1', '>= 1.1.4'
 
 # Use AWS S3 SDK for accessing S3 storage account for images and other files
 # Active Storage will access in blob storage
