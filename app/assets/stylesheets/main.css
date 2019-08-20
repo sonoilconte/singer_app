@@ -181,6 +181,12 @@ body {
   border-radius: 0px 0px 5px 5px;
 }
 
+/* Social media icons appearing in the footer */
+#footer img {
+  width: 30px;
+  margin: 0 10px 10px 10px;
+}
+
 /* Admin Portal views */
 
 .media-edit textarea {

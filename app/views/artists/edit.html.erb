@@ -19,26 +19,22 @@
 
   <div class="row">
     <div class="col-sm-5 admin-padding">
-      <div class="">
-        <%= form.label :resume, class: 'admin-label' %>
-      </div>
+      <div class=""><%= form.label :resume, class: 'admin-label' %></div>
       <div class="">
         <% if @artist.resume && @artist.resume.attachment %>
-        <div class="admin-header-padding">
-          <%= @artist.resume.filename  %>
-        </div>
-        <div class="admin-header-padding">
-          Resume will display on website at /resume
-        </div>
+        <div>File: <%= @artist.resume.filename %></div>
+        <div>(Resume will display on website at /resume)</div>
         <% else %>
-        <div class="admin-header-padding">
-          'No resume found'
-        </div>
+        <div>'No resume found'</div>
         <% end %>
       </div>
-      <div class="">
-        <%= form.file_field :resume, multiple: false %>
-      </div>
+      <div class="admin-padding"><%= form.file_field :resume, multiple: false %></div>
+      <div><%= form.label :facebook_url, class: 'admin-label' %></div>
+      <div><%= form.text_field :facebook_url, class: 'admin-input' %></div>
+      <div><%= form.label :instagram_url, class: 'admin-label' %></div>
+      <div><%= form.text_field :instagram_url, class: 'admin-input' %></div>
+      <div><%= form.label :twitter_url, class: 'admin-label' %></div>
+      <div><%= form.text_field :twitter_url, class: 'admin-input' %></div>
     </div>
     <div class="col-sm-7 admin-padding">
       <div><%= form.label :management, class: 'admin-label' %></div>
