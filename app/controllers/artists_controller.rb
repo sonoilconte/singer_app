@@ -51,15 +51,20 @@ class ArtistsController < ApplicationController
   end
 
   def show_default
-    current_user
-    default_artist
-    if (!params[:path])
-      render "default_home"
-    elsif (params[:path] == "schedule")
-      show_default_schedule
-    else
-      render "default_#{params[:path]}"
-    end
+    # ALLOW_PUBLIC must be true for the public to visit the site
+      if (ENV['ALLOW_PUBLIC'] || current_user)
+        current_user
+        default_artist
+        if (!params[:path])
+          render "default_home"
+        elsif (params[:path] == "schedule")
+          show_default_schedule
+        else
+          render "default_#{params[:path]}"
+        end
+      else
+        redirect_to '/login'
+      end
   end
 
   def show_default_schedule
