@@ -1,53 +1,38 @@
 <%= render 'shared/admin_menu' %>
 
 <% if @artist %>
-<h1>
+
+<h3>
   <% if @artist.name %>
   <%= @artist.name %>
   <% else %>
   <%= p 'Artist name not found' %>
   <% end %>
-</h1>
+</h3>
 
-<h2>
-  Biography
-</h2>
-
-<p>
-  <% if @artist.bio %>
-  <%= @artist.bio %>
+<h4>
+  <% if @artist.voice_type %>
+  <%= @artist.voice_type %>
   <% else %>
-  <%= p 'Artist bio not found' %>
+  <%= p 'Artist voice type not found' %>
+  <% end %>
+</h4>
+
+<h3>Email</h3>
+<p>
+  <% if @artist.email %>
+  <%= @artist.email %>
+  <% else %>
+  <%= p 'Artist email not found' %>
   <% end %>
 </p>
 
+<h3>Biography</h3>
 <p>
   <% if @artist.biography %>
   <%= @artist.biography %>
   <% else %>
   <%= p 'Artist biography not found' %>
-  <% end %>
-</p>
-
-<h2>Management</h2>
-
-<p>
-  <% if @artist.management %>
-  <%= @artist.management %>
-  <% else %>
-  <%= p 'Artist management not found' %>
-  <% end %>
-</p>
-
-<h2>Schedule</h2>
-
-<p>
-  <%= @artist.schedule %>
-</p>
-
-<p>
-  <% @artist.images.each do |image| %>
-    <%= image_tag(image.file) %>
   <% end %>
 </p>
 
