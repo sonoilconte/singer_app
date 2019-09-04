@@ -31,4 +31,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # May use this or something similar for a graceful not found page 
+  # def not_found
+  #   # render :file => "#{Rails.root}/public/404.html"
+  #   render 'artists/not_found'
+  # end
+
 end
