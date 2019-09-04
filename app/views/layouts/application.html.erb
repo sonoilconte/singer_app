@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SingerApp</title>
+    <title>
+      <% if content_for?(:title) %>
+        <%= yield(:title) %>
+      <% else %>
+        <%= 'Artist Admin Portal' %>
+      <% end %>
+    </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <!-- Display for mobile -->

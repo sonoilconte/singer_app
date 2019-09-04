@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def title(text)
+    content_for :title, text
+  end
+
   def nav_link(display_text, path)
     class_name = current_page?(path) ? 'active' : nil
     # Create li tag with class active if the link is to the current page
