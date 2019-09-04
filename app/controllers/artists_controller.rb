@@ -52,26 +52,30 @@ class ArtistsController < ApplicationController
 
   def show_default
     # ALLOW_PUBLIC must be true for the public to visit the site
-      if (ENV['ALLOW_PUBLIC'] || current_user)
-        current_user
-        default_artist
-        if (!params[:path])
-          render "default_home"
-        elsif (params[:path] == "schedule")
-          show_default_schedule
-        else
-          render "default_#{params[:path]}"
-        end
+    if (ENV['ALLOW_PUBLIC'] || current_user)
+      current_user
+      default_artist
+      dynamic_template = "default_#{params[:path]}"
+      dynamic_file_path = "#{Rails.root}/app/views/artists/#{dynamic_template}.html.erb"
+      if (!params[:path])
+        render "default_home"
+      elsif (params[:path] == "schedule")
+        show_default_schedule
+      elsif File.exists?(dynamic_file_path)
+        render dynamic_template
       else
-        redirect_to '/login'
+        render :file => 'public/404.html', :status => 404, :layout => false
       end
+    else
+      redirect_to '/login'
+    end
   end
 
   def show_default_schedule
     current_user
     artist_id = default_artist.id
     @events = Event.where(artist_id: artist_id)
-      .reject { |event | event.archived }
+      .reject { |event| event.archived }
       .sort_by { |event| event.datetime }
     render "default_schedule"
   end
