@@ -25,7 +25,7 @@ gem "aws-sdk-s3", require: false
 # Lockup gem for managing access to demo site
 # gem 'lockup'
 
-gem 'nokogiri', '~> 1.8'
+gem 'nokogiri', '~> 1.10'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
