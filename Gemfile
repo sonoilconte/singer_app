@@ -10,7 +10,7 @@ gem 'webpacker', github: 'rails/webpacker'
 # Datetime picker for events on artist schedules
 gem 'flatpickr_rails'
 
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 
 # hirb for easy table viewing in terminal
 gem 'hirb', '~>0.7.0'
